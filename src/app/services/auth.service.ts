@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {Router} from '@angular/router';
-import {map} from 'rxjs/operators';
-import {Login} from '../models/login';
-import {User} from '../models/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { Login } from '../models/login';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +24,15 @@ export class AuthService {
   }
 
   login(login: Login): void {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        // 'Authorization': 'my-auth-token'
-      })
-    };
+    // TODO: Would be nice to use a token later
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     // 'Authorization': 'my-auth-token'
+    //   })
+    // };
 
-    this.httpClient.post<User>('https://api.4ray.co/BackEnd/login', login, httpOptions)
+    this.httpClient.post<User>('https://api.4ray.co/BackEnd/login', login)
       .pipe(
         map((user: User) => {
           if (user != null) {
