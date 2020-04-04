@@ -9,6 +9,8 @@ dist/
 tmp/
 app/**/*.js
 app/**/*.js.map
+.DS_Store
+**/.DS_Store
 
 # dependencies
 node_modules/
