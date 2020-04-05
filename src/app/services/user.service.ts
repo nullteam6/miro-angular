@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 
 @Injectable({
@@ -10,6 +10,6 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   sendReg(user: User) {
-    this.httpClient.post<User>('localhost:8080/BackEnd/user', user).subscribe();
+    this.httpClient.post<User>('https://api.4ray.co/BackEnd/user', user).subscribe();
   }
 }

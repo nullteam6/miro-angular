@@ -31,5 +31,4 @@ export class RegisterComponent implements OnInit {
 
     this.us.sendReg(this.user);
   }
-
 }
