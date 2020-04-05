@@ -10,13 +10,6 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   sendReg(user: User) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        // 'Authorization': 'my-auth-token'
-      })
-    };
-
-    this.httpClient.post<User>('localhost:8080/BackEnd/user', user, httpOptions).subscribe();
+    this.httpClient.post<User>('localhost:8080/BackEnd/user', user).subscribe();
   }
 }
