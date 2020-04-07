@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimeService } from '../services/anime.service';
+import { Anime } from '../models/anime';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor() { }
+
+  favAnime = new Anime();
 
   ngOnInit(): void {
   }
