@@ -1,9 +1,18 @@
+import { KeycloakConfig } from 'keycloak-angular';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
+const keycloakConfig: KeycloakConfig = {
+  url: 'https://miro.5x5code.com:8445/auth',
+  realm: 'miro',
+  clientId: 'angular',
+};
+
 export const environment = {
-  production: false
+  production: false,
+  keycloakConfig: keycloakConfig
 };
 
 /*
