@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 import { Login } from '../models/login';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +19,15 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private keycloakService: KeycloakService) { }
 
   ngOnInit(): void { }
 
   onSubmit() {
-    this.login.username = this.reactiveForm.controls.username.value;
-    this.login.password = this.reactiveForm.controls.password.value;
+    // this.login.username = this.reactiveForm.controls.username.value;
+    // this.login.password = this.reactiveForm.controls.password.value;
 
-    this.authService.login(this.login);
+    // this.authService.login(this.login);
+    console.log(JSON.stringify(this.keycloakService.loadUserProfile()));
   }
 }
