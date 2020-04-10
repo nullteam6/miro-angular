@@ -17,16 +17,12 @@ import { environment } from 'src/environments/environment';
 import { KeycloakService } from 'keycloak-angular'
 
 let keycloakService: KeycloakService = new KeycloakService();
+@NgModule({   declarations: [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-
     SearchAnimeComponent,
-
     NavbarComponent,
-
-  ],
-  imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -34,13 +30,14 @@ let keycloakService: KeycloakService = new KeycloakService();
     NoopAnimationsModule,
     NgbPaginationModule,
   ],
-  providers: [ 
+providers: 
+[ 
     CookieService,
     {
       provide: KeycloakService,
       useValue: keycloakService
     }
-   ],
+],
   entryComponents: [AppComponent]
 })
 export class AppModule implements DoBootstrap {
