@@ -1,4 +1,6 @@
-export class Anime 
-{
-    name: string;
+export class Anime {
+    id: number;
+    title: string;
+    description: string;
+    imgURL: string;
 }

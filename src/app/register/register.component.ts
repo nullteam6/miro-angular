@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
@@ -12,7 +11,7 @@ import { UserService } from '../services/user.service';
 export class RegisterComponent implements OnInit {
   user: User = new User();
 
-  rForm = new FormGroup({
+  rForm= new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     firstName: new FormControl(''),
@@ -21,7 +20,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private us: UserService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   onSubmit() {
     this.user.username = this.rForm.controls.username.value;

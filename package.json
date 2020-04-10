@@ -25,6 +25,9 @@
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "bootstrap": "^4.4.1",
     "nan": "^2.14.0",
+    "keycloak-angular": "^7.2.0",
+    "keycloak-js": "^9.0.2",
+    "ngx-cookie-service": "^3.0.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

@@ -32,16 +32,17 @@ export class AuthService {
     //   })
     // };
 
-    this.httpClient.post<User>('https://api.4ray.co/BackEnd/login', login)
-      .pipe(
-        map((user: User) => {
-          if (user != null) {
-            this.user = user;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.isLoginSubject.next(true);
-          }
-        })
-      ).subscribe();
+    // this.httpClient.post<User>('https://api.4ray.co/BackEnd/login', login)
+    //   .pipe(
+    //     map((user: User) => {
+    //       if (user != null) {
+    //         this.user = user;
+    //         localStorage.setItem('currentUser', JSON.stringify(user));
+    //         this.isLoginSubject.next(true);
+    //       }
+    //     })
+    //   ).subscribe();
+
   }
 
   logout(): void {
