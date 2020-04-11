@@ -8,13 +8,18 @@
     </div>
 </div>
 <div *ngIf="searched" class="Container">
-    <table class="table table-striped bg-light">
+    <table class="bg-light table table-striped">
         <thead>
+            <th scope="col"> </th>
             <th scope="col"> Name </th>
+            <th scope="col"> Description </th>
+
         </thead>
         <tbody>
             <tr *ngFor="let anime of animes">
-               <a routerLink="/details" (click)="onClick(anime)"><td>{{anime.name}}</td></a>
+            <td><img [src]=anime.logo alt="Anime logo" width="50px" height="50px"></td>
+            <a routerLink="/details" (click)="onClick(anime)"><td>{{anime.name}}</td></a>
+            <td>{{anime.synopsis}}</td>
             </tr>
         </tbody>
     </table>

@@ -12,7 +12,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SearchAnimeComponent implements OnInit 
 {
-  animes: Anime[]
+  animes: Anime[] = [];
   searched: Boolean
   page = 1
   pageSize = 10
@@ -38,7 +38,12 @@ export class SearchAnimeComponent implements OnInit
     this.searchTerm = this.searchForm.controls.name.value
     this.s.getAnime(this.searchTerm).subscribe(
       (data: any) => {
-        this.animes = data.list;
+        data.list.forEach((anime: Anime) => {
+          anime.name = JSON.parse(anime.name)
+          anime.synopsis = JSON.parse(anime.synopsis)
+          anime.logo = JSON.parse(anime.logo)
+          this.animes.push(anime);
+        });
         this.searched = true;
         this.collectionSize = data.totalCount
       }
@@ -51,7 +56,13 @@ export class SearchAnimeComponent implements OnInit
     //  .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
     this.s.getAnimeOffset(this.searchTerm, (this.page * 10) - 10).subscribe(
       (data: any) => {
-        this.animes = data.list;
+        this.animes = [];
+        data.list.forEach((anime: Anime) => {
+          anime.name = JSON.parse(anime.name)
+          anime.synopsis = JSON.parse(anime.synopsis)
+          anime.logo = JSON.parse(anime.logo)
+          this.animes.push(anime);
+        });
       }
     );
   }
