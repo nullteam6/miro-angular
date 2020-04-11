@@ -1,8 +1,10 @@
+import { Profile } from './profile';
+
 export class User {
-  id: number;
   firstName: string;
   lastName: string;
-  username: string;
-  password: string;
-  admin: boolean;
+  entryId: string;
+  uid: string;
+  mail: string;
+  profile: Profile;
 }

@@ -6,7 +6,6 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-
   constructor(private httpClient: HttpClient) { }
 
   sendReg(user: User) {
