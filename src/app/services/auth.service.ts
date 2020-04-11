@@ -7,23 +7,28 @@ import { map } from 'rxjs/operators';
 
 import { Login } from '../models/login';
 import { User } from '../models/user';
+import {KeycloakService} from 'keycloak-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private user: User;
-  private isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
+  private isLoginSubject = new BehaviorSubject<boolean>(false);
 
-  constructor(private httpClient: HttpClient, private router: Router) {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private keycloakAngular: KeycloakService
+  ) {
+    // this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
-  private hasToken(): boolean {
-    return !!localStorage.getItem('currentUser');
-  }
+  // private hasToken(): boolean {
+  //   return !!localStorage.getItem('currentUser');
+  // }
 
-  login(login: Login): void {
+  // login(login: Login): void {
     // TODO: Would be nice to use a token later
     // const httpOptions = {
     //   headers: new HttpHeaders({
@@ -43,33 +48,42 @@ export class AuthService {
     //     })
     //   ).subscribe();
 
-  }
+  // }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
-    this.isLoginSubject.next(false);
-    this.router.navigate([ 'login' ]).then();
-    location.reload();
+    // localStorage.removeItem('currentUser');
+    this.keycloakAngular.logout().then(r => {
+      this.isLoginSubject.next(false);
+      // location.reload();
+      this.router.navigate(['/']).then();
+    }
+  );
+    // this.router.navigate([ 'login' ]).then();
+    // location.reload();
   }
 
   isLoggedIn(): Observable<boolean> {
+    this.keycloakAngular.isLoggedIn().then(r =>
+      r && this.isLoginSubject.next(true)
+    );
+
     return this.isLoginSubject.asObservable();
   }
 
-  isManager(): boolean {
-    if (this.hasToken()) {
-      const user: User = JSON.parse(localStorage.getItem('currentUser'));
-      return (user.admin ? true : false);
-    }
+  // isManager(): boolean {
+  //   if (this.hasToken()) {
+  //     const user: User = JSON.parse(localStorage.getItem('currentUser'));
+  //     return (user.admin ? true : false);
+  //   }
+  //
+  //   return false;
+  // }
 
-    return false;
-  }
-
-  getUserId(): number {
-    return this.hasToken() ? this.user.id : null;
-  }
-
-  getUsername(): string {
-    return this.hasToken() ? this.user.username : null;
-  }
+  // getUserId(): number {
+  //   return this.hasToken() ? this.user.id : null;
+  // }
+  //
+  // getUsername(): string {
+  //   return this.hasToken() ? this.user.username : null;
+  // }
 }

@@ -2,32 +2,38 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, DoBootstrap } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgbCollapseModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { KeycloakService } from 'keycloak-angular';
+import { CookieService } from 'ngx-cookie-service';
+
+import { environment } from 'src/environments/environment';
+
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SearchAnimeComponent } from './search-anime/search-anime.component';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { KeycloakService } from 'keycloak-angular';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component'
+import { SearchAnimeComponent } from './search-anime/search-anime.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
-@NgModule({   
+@NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent,
     SearchAnimeComponent,
     NavbarComponent,
     AnimeDetailsComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +42,9 @@ const keycloakService: KeycloakService = new KeycloakService();
     HttpClientModule,
     NoopAnimationsModule,
     NgbPaginationModule,
+    NgbCollapseModule,
   ],
-  providers: 
-  [
+  providers: [
     CookieService,
     {
       provide: KeycloakService,
