@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { AppAuthGuard } from './app-authguard';
+import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   },
   { path: 'register', component: RegisterComponent },
   { path: 'search', component: SearchAnimeComponent },
+  { path: 'details', component: AnimeDetailsComponent},
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: '**', redirectTo: '' },
 ];

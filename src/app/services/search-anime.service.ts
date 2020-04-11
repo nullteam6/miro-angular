@@ -8,6 +8,9 @@ import {Anime} from '../models/anime';
 })
 export class SearchAnimeService 
 {
+
+  selectedAnime = new Anime()
+
   constructor(private http: HttpClient) 
   { 
   }
@@ -19,5 +22,13 @@ export class SearchAnimeService
   getAnimeOffset(name: String, offset: number): Observable<any> {
     name = name.replace(' ', '%20');
     return this.http.get<any>(`http://api.4ray.co/BackEnd/anime/${name}?offset=${offset}`);
+  }
+
+  saveAnime(anime: Anime){
+    this.selectedAnime = anime;
+  }
+
+  passAnime(): Anime {
+    return this.selectedAnime
   }
 }

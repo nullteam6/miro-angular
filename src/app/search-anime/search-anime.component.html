@@ -8,13 +8,13 @@
     </div>
 </div>
 <div *ngIf="searched" class="Container">
-    <table class="table table-striped">
+    <table class="table table-striped bg-light">
         <thead>
             <th scope="col"> Name </th>
         </thead>
         <tbody>
             <tr *ngFor="let anime of animes">
-            <td>{{anime.name}}</td>
+               <a routerLink="/details" (click)="onClick(anime)"><td>{{anime.name}}</td></a>
             </tr>
         </tbody>
     </table>

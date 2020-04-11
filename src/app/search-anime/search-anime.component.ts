@@ -54,6 +54,9 @@ export class SearchAnimeComponent implements OnInit
         this.animes = data.list;
       }
     );
-    
+  }
+  
+  onClick(anime: Anime): void {
+    this.s.saveAnime(anime)
   }
 }

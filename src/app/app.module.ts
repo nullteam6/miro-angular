@@ -14,7 +14,8 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
-import { KeycloakService } from 'keycloak-angular'
+import { KeycloakService } from 'keycloak-angular';
+import { AnimeDetailsComponent } from './anime-details/anime-details.component'
 
 const keycloakService: KeycloakService = new KeycloakService();
 
@@ -26,6 +27,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     RegisterComponent,
     SearchAnimeComponent,
     NavbarComponent,
+    AnimeDetailsComponent,
   ],
   imports: [
     BrowserModule,

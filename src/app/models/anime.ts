@@ -1,6 +1,6 @@
 export class Anime {
     id: number;
-    title: string;
-    description: string;
-    imgURL: string;
+    name: string;
+    synopsis: string;
+    logo: string;
 }
