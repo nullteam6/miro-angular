@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgbCollapseModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { KeycloakService } from 'keycloak-angular';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -13,22 +13,24 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
     HomeComponent,
     SearchAnimeComponent,
-    NavbarComponent,
     LoginComponent,
     LogoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +38,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    NgbPaginationModule,
-    NgbCollapseModule,
+    NgbModule,
   ],
   providers: [
     CookieService,

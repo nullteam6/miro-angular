@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {Anime} from '../models/anime';
+
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SearchAnimeService 
-{
-  constructor(private http: HttpClient) 
-  { 
-  }
-  getAnime(name: string): Observable<any> 
-  {
+export class SearchAnimeService {
+  constructor(private http: HttpClient) { }
+
+  getAnime(name: string): Observable<any> {
     return this.http.get<any>(`http://api.4ray.co/BackEnd/anime/${name}`);
   }
 
