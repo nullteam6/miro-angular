@@ -12,22 +12,22 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  private login: Login = new Login();
-
-  reactiveForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
+  // private login: Login = new Login();
+  //
+  // reactiveForm = new FormGroup({
+  //   username: new FormControl('', [Validators.required]),
+  //   password: new FormControl('', [Validators.required]),
+  // });
 
   constructor(private authService: AuthService, private keycloakService: KeycloakService) { }
 
   ngOnInit(): void { }
 
-  onSubmit() {
+  // onSubmit() {
     // this.login.username = this.reactiveForm.controls.username.value;
     // this.login.password = this.reactiveForm.controls.password.value;
 
     // this.authService.login(this.login);
-    console.log(JSON.stringify(this.keycloakService.loadUserProfile()));
-  }
+    // console.log(JSON.stringify(this.keycloakService.loadUserProfile()));
+  // }
 }
