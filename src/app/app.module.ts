@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { KeycloakService } from 'keycloak-angular';
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { CookieService } from 'ngx-cookie-service';
 
 import { environment } from 'src/environments/environment';
@@ -19,6 +19,7 @@ import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { JsonParse } from './pipes/json-parse';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
@@ -30,7 +31,8 @@ const keycloakService: KeycloakService = new KeycloakService();
     SearchAnimeComponent,
     LoginComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    JsonParse
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     HttpClientModule,
     NoopAnimationsModule,
     NgbModule,
+    KeycloakAngularModule
   ],
   providers: [
     CookieService,
