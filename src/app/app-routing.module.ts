@@ -24,7 +24,6 @@ const routes: Routes = [
   },
   { path: 'search', component: SearchAnimeComponent },
   { path: 'details', component: AnimeDetailsComponent},
-
   {
     path: 'profile',
     component: ProfileComponent,

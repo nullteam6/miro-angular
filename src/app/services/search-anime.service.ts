@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import {Anime } from '../models/Anime'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 })
 
 export class SearchAnimeService {
+
+  selectedAnime: Anime;
+
   constructor(private http: HttpClient) { }
 
   getAnime(name: string): Observable<any> {
@@ -24,6 +27,6 @@ export class SearchAnimeService {
   }
 
   passAnime(): Anime {
-    return this.selectedAnime
+    return this.selectedAnime;
   }
 }

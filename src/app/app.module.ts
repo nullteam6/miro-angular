@@ -43,7 +43,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
     NgbModule,
   ],
   providers: [

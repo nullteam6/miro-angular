@@ -19,8 +19,6 @@ export class UserService {
   getUser(username: string): Observable<User> {
     // return this.httpClient.get<User>(`http://localhost:8080/BackEnd/user/${username}`);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.auth.getToken()}`);
-    alert(JSON.stringify(headers));
-    return this.httpClient.get<User>(`http://api.4ray.co:8081/BackEnd/user/${username}`, 
-    {headers:  headers });
+    return this.httpClient.get<User>(`https://api.4ray.co/BackEnd/user/${username}`);
   }
 }

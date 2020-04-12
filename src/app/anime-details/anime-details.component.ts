@@ -14,6 +14,10 @@ import { AnimeBacklog } from '../models/anime-backlog';
 })
 export class AnimeDetailsComponent implements OnInit {
 
+  profile = new Profile();
+  selectedAnime = new Anime();
+  backLog = new AnimeBacklog();
+
   constructor(private s: SearchAnimeService, private profServ: ProfileService) { 
     this.profServ.getProfile().subscribe((data: any) => {
       this.profile = data;
@@ -25,25 +29,54 @@ export class AnimeDetailsComponent implements OnInit {
   ngOnInit(): void 
   {
     this.selectedAnime = this.s.passAnime();
-    console.log(this.selectedAnime.logo);
   }
 
-  profile = new Profile();
-  selectedAnime = new Anime();
-
-  addWatchedList(anime: Anime) {
-    if(this.profile.aniBacklog.finishedList === null){
-      console.log(this.profile.aniBacklog.finishedList)
+  addWatchedList(anime: Anime) 
+  {
+    if(this.profile.aniBacklog === null)
+    {
+      this.backLog.backlist = [];
+      this.backLog.droppedList = [];
+      this.backLog.finishedList = [];
+      this.backLog.inProgList = [];
+      this.profile.aniBacklog = this.backLog;
+      console.log("Anime Backlog: "+ JSON.stringify(this.profile.aniBacklog));
     }
-    // this.profile.aniBackLog.finishedList.push(anime);
-    // console.log(this.profile.aniBackLog)
+    console.log("Profile id: "+ JSON.stringify(this.profile.id));
+    this.profile.aniBacklog.finishedList.push(anime);
+    console.log("Anime finishedList: "+JSON.stringify(this.profile.aniBacklog.finishedList)+" Array Length: "+ this.profile.aniBacklog.finishedList.length);
+    this.profServ.sendProfile(this.profile);
   }
   addWatchList(anime: Anime)
   {
+    if(this.profile.aniBacklog === null)
+    {
+      this.backLog.backlist = [];
+      this.backLog.droppedList = [];
+      this.backLog.finishedList = [];
+      this.backLog.inProgList = [];
+      this.profile.aniBacklog = this.backLog;
+      console.log("Anime Backlog: "+ JSON.stringify(this.profile.aniBacklog))
+    }
+    console.log("Profile id: "+ JSON.stringify(this.profile.id));
     this.profile.aniBacklog.inProgList.push(anime);
+    console.log("Anime inProgList: "+JSON.stringify(this.profile.aniBacklog.inProgList));
+    this.profServ.sendProfile(this.profile);
   }
   addWatchLater(anime: Anime)
   {
+    if(this.profile.aniBacklog === null)
+    {
+      this.backLog.backlist = [];
+      this.backLog.droppedList = [];
+      this.backLog.finishedList = [];
+      this.backLog.inProgList = [];
+      this.profile.aniBacklog = this.backLog;
+      console.log("Anime Backlog: "+ JSON.stringify(this.profile.aniBacklog))
+    }
+    console.log("Profile id: "+ JSON.stringify(this.profile.id));
     this.profile.aniBacklog.backlist.push(anime);
+    console.log("Anime backlist: "+JSON.stringify(this.profile.aniBacklog.backlist));
+    this.profServ.sendProfile(this.profile);
   }
 }
