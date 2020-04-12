@@ -22,6 +22,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { JsonParse } from './pipes/json-parse';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
@@ -35,7 +36,8 @@ const keycloakService: KeycloakService = new KeycloakService();
     AnimeDetailsComponent,
     LoginComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    JsonParse
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     NoopAnimationsModule,
     KeycloakAngularModule,
     NgbModule,
+    KeycloakAngularModule
   ],
   providers: [
     CookieService,
