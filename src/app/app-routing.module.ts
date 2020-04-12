@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -21,6 +22,11 @@ const routes: Routes = [
     canActivate: [AppAuthGuard]
   },
   { path: 'search', component: SearchAnimeComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AppAuthGuard]
+  },
   { path: '**', redirectTo: '' },
 ];
 
