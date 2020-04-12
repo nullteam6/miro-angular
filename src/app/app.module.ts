@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, DoBootstrap } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 
 import { environment } from 'src/environments/environment';
@@ -14,10 +15,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
+import { AnimeDetailsComponent } from './anime-details/anime-details.component'
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { TokenInterceptor } from './services/token.interceptor';
+import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { JsonParse } from './pipes/json-parse';
 
@@ -29,6 +32,8 @@ const keycloakService: KeycloakService = new KeycloakService();
     NavbarComponent,
     HomeComponent,
     SearchAnimeComponent,
+    NavbarComponent,
+    AnimeDetailsComponent,
     LoginComponent,
     LogoutComponent,
     ProfileComponent,
@@ -40,6 +45,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
+    KeycloakAngularModule,
     NgbModule,
     KeycloakAngularModule
   ],
@@ -48,7 +54,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     {
       provide: KeycloakService,
       useValue: keycloakService
-    }
+    },
   ],
   entryComponents: [AppComponent]
 })
