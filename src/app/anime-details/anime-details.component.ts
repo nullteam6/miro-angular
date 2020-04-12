@@ -32,9 +32,11 @@ export class AnimeDetailsComponent implements OnInit {
   selectedAnime = new Anime();
 
   addWatchedList(anime: Anime) {
-
-    this.profile.aniBackLog.finishedList.push(anime);
-    console.log(this.profile.aniBackLog)
+    if(this.profile.aniBackLog.finishedList === null){
+      console.log(this.profile.aniBackLog.finishedList)
+    }
+    // this.profile.aniBackLog.finishedList.push(anime);
+    // console.log(this.profile.aniBackLog)
   }
   addWatchList(anime: Anime)
   {
