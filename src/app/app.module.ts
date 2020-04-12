@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbCollapseModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { KeycloakService } from 'keycloak-angular';
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { CookieService } from 'ngx-cookie-service';
 
 import { environment } from 'src/environments/environment';
@@ -38,6 +38,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     NoopAnimationsModule,
     NgbPaginationModule,
     NgbCollapseModule,
+    KeycloakAngularModule
   ],
   providers: [
     CookieService,
