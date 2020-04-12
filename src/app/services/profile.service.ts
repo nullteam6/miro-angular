@@ -28,11 +28,11 @@ export class ProfileService {
       }));
   }
 
-  passProfile(username: string): Profile{
-    this.getProfile();
-    console.log(this.profile);
-    return this.profile;
-  }
+  // passProfile(username: string): Profile{
+  //   this.getProfile();
+  //   console.log(this.profile);
+  //   return this.profile;
+  // }
 
   sendProfile(profile: Profile) {
     console.log("Profile = " + this.profile);

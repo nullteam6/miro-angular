@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -23,6 +24,12 @@ const routes: Routes = [
   },
   { path: 'search', component: SearchAnimeComponent },
   { path: 'details', component: AnimeDetailsComponent},
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AppAuthGuard]
+  },
   { path: '**', redirectTo: '' },
 ];
 

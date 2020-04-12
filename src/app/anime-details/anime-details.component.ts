@@ -4,7 +4,7 @@ import { SearchAnimeService } from '../services/search-anime.service';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
 import { Profile } from '../models/profile';
-import { AnimeBackLog } from '../models/anime-backlog';
+import { AnimeBacklog } from '../models/anime-backlog';
 
 
 @Component({
@@ -32,18 +32,18 @@ export class AnimeDetailsComponent implements OnInit {
   selectedAnime = new Anime();
 
   addWatchedList(anime: Anime) {
-    if(this.profile.aniBackLog.finishedList === null){
-      console.log(this.profile.aniBackLog.finishedList)
+    if(this.profile.aniBacklog.finishedList === null){
+      console.log(this.profile.aniBacklog.finishedList)
     }
     // this.profile.aniBackLog.finishedList.push(anime);
     // console.log(this.profile.aniBackLog)
   }
   addWatchList(anime: Anime)
   {
-    this.profile.aniBackLog.inProgList.push(anime);
+    this.profile.aniBacklog.inProgList.push(anime);
   }
   addWatchLater(anime: Anime)
   {
-    this.profile.aniBackLog.backList.push(anime);
+    this.profile.aniBacklog.backlist.push(anime);
   }
 }

@@ -1,9 +1,8 @@
-import { AnimeBackLog} from './anime-backlog';
+import { AnimeBacklog } from './anime-backlog';
 
-export class Profile
-{
-    aniBackLog: AnimeBackLog
-    id: number;
-    uid: string;
-    description: string;
+export class Profile {
+  id: number;
+  uid: string;
+  description: string;
+  aniBacklog: AnimeBacklog;
 }

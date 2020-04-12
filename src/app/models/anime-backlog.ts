@@ -1,12 +1,9 @@
-import {Anime} from './anime';
+import { Anime } from './anime';
 
-export class AnimeBackLog{
-
-    id: number;
-    name: string;
-    backList: Anime[];
-    inProgList: Anime[];
-    finishedList:Anime[];
-    dropList: Anime[];
-    
+export class AnimeBacklog {
+  id: number;
+  backlist: Anime[];
+  inProgList: Anime[];
+  finishedList: Anime[];
+  droppedList: Anime[];
 }
