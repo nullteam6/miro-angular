@@ -4,8 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { KeycloakService } from 'keycloak-angular';
 import { CookieService } from 'ngx-cookie-service';
 
 import { environment } from 'src/environments/environment';
@@ -38,6 +39,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
+    KeycloakAngularModule
     NgbModule,
   ],
   providers: [
