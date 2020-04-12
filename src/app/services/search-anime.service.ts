@@ -16,7 +16,8 @@ export class SearchAnimeService
   }
   getAnime(name: string): Observable<any> 
   {
-    return this.http.get<any>(`http://api.4ray.co/BackEnd/anime/${name}`);
+    // return this.http.get<any>(`http://api.4ray.co/BackEnd/anime/${name}`);
+    return this.http.get<any>(`http://localhost:8080/BackEnd/anime/${name}`);
   }
 
   getAnimeOffset(name: String, offset: number): Observable<any> {

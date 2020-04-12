@@ -15,6 +15,8 @@ import {KeycloakService} from 'keycloak-angular';
 export class AuthService {
   private user: User;
   private isLoginSubject = new BehaviorSubject<boolean>(false);
+  private tokenSubject = new BehaviorSubject<boolean>(false);
+  private token: string;
 
   constructor(
     private httpClient: HttpClient,
@@ -55,6 +57,7 @@ export class AuthService {
     this.keycloakAngular.logout().then(r => {
       this.isLoginSubject.next(false);
       // location.reload();
+      this.token = null;
       this.router.navigate(['/']).then();
     }
   );
@@ -63,11 +66,26 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<boolean> {
-    this.keycloakAngular.isLoggedIn().then(r =>
-      r && this.isLoginSubject.next(true)
+    this.keycloakAngular.isLoggedIn().then(r => {
+      r && this.isLoginSubject.next(true);
+      this.keycloakAngular.getToken().then(
+        (data: any) => {
+          this.token = data
+        }
+      );
+    }
+      
     );
 
     return this.isLoginSubject.asObservable();
+  }
+
+  getCurrentUsername(): string {
+    return this.keycloakAngular.getUsername();
+  }
+
+  getToken(): string {
+    return this.token;
   }
 
   // isManager(): boolean {

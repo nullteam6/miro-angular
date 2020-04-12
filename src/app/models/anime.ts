@@ -3,4 +3,9 @@ export class Anime {
     name: string;
     synopsis: string;
     logo: string;
+    episodeCount: string;
+    showType: string;
+    status: string;
+    startDate: string;
+    endDate: string;
 }
