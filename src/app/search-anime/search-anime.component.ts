@@ -51,9 +51,6 @@ export class SearchAnimeComponent implements OnInit
   }
 
   pageChange() {
-    //return this.animes
-    //  .map((anime, i) => ({id: i + 1, ...anime}))
-    //  .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
     this.s.getAnimeOffset(this.searchTerm, (this.page * 10) - 10).subscribe(
       (data: any) => {
         this.animes = [];
@@ -65,6 +62,9 @@ export class SearchAnimeComponent implements OnInit
         });
       }
     );
-    
+  }
+  
+  onClick(anime: Anime): void {
+    this.s.saveAnime(anime)
   }
 }

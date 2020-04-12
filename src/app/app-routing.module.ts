@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
+import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
     canActivate: [AppAuthGuard]
   },
   { path: 'search', component: SearchAnimeComponent },
+  { path: 'details', component: AnimeDetailsComponent},
   {
     path: 'profile',
     component: ProfileComponent,
