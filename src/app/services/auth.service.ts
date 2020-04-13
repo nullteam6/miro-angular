@@ -30,15 +30,8 @@ export class AuthService {
 
   isLoggedIn(): Observable<boolean> {
     this.keycloakAngular.isLoggedIn().then(r => {
-      r && this.isLoginSubject.next(true);
-      this.keycloakAngular.getToken().then(
-        (data: any) => {
-          this.token = data
-        }
-      );
-    }
-      
-    );
+      if (r) { this.isLoginSubject.next(true); }
+    });
 
     return this.isLoginSubject.asObservable();
   }
