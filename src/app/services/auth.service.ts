@@ -31,4 +31,8 @@ export class AuthService {
 
     return this.isLoginSubject.asObservable();
   }
+
+  isAdmin(): boolean {
+    return this.keycloakAngular.getUserRoles().includes('ROLE_ADMIN')
+  }
 }

@@ -12,9 +12,11 @@ import { AuthService } from '../services/auth.service';
 export class NavbarComponent implements OnInit {
   isCollapsed = true;
   isLoggedIn: Observable<boolean>;
+  isAdmin: boolean;
 
   constructor(public authService: AuthService) {
     this.isLoggedIn = authService.isLoggedIn();
+    this.isAdmin = authService.isAdmin();
   }
 
   ngOnInit(): void { }

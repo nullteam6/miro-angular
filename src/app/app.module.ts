@@ -20,6 +20,7 @@ import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
@@ -31,7 +32,8 @@ const keycloakService: KeycloakService = new KeycloakService();
     SearchAnimeComponent,
     LoginComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
     NgbModule,
   ],
   providers: [
