@@ -27,8 +27,8 @@ export class AnimeDetailsComponent implements OnInit {
     this.authService.isLoggedIn().subscribe((data) => {
       this.isLoggedIn = data;
       if (data) { 
-        this.profilfeServ.getProfile().subscribe((data: any) => {
-          this.profile = data;
+        this.profilfeServ.getProfile().subscribe((profile: any) => {
+          this.profile = profile;
         });
       }
     });
