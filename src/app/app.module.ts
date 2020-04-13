@@ -37,7 +37,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     LoginComponent,
     LogoutComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
     JsonParse
   ],
   imports: [

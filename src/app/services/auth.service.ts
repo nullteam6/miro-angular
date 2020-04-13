@@ -26,7 +26,8 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    return this.keycloakAngular.getUserRoles().includes('ROLE_ADMIN')
+    return this.keycloakAngular.getUserRoles().includes('ROLE_ADMIN');
+  }
 
   logout(): void {
     this.keycloakAngular.logout().then(r => {
