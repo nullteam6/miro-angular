@@ -41,7 +41,7 @@ export class SearchAnimeComponent implements OnInit {
     this.searchTerm = this.searchForm.controls.name.value;
     this.s.getAnime(this.searchTerm).subscribe(
       (data: any) => {
-        this.viewParse(data);
+        this.animes = data.list;
         this.searched = true;
         this.collectionSize = data.totalCount;
       }
@@ -51,9 +51,7 @@ export class SearchAnimeComponent implements OnInit {
   pageChange() {
     this.s.getAnimeOffset(this.searchTerm, (this.page * 10) - 10).subscribe(
       (data: any) => {
-        // Empty the animes array so we don't write all over the page
-        this.animes = [];
-        this.viewParse(data);
+        this.animes = data.list;
       }
     );
   }

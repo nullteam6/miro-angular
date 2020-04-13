@@ -18,9 +18,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let anime of animes">
-                <td><img [src]=anime.logo alt="Anime logo" width="50px" height="50px"></td>
-                <a routerLink="/details" (click)="onClick(anime)"><td>{{anime.name}}</td></a>
-                <td>{{anime.synopsis}}</td>
+                <td><img src="{{ anime.logo | jsonParser}}" alt="Anime logo" width="50px" height="50px"></td>
+                <a routerLink="/details" (click)="onClick(anime)"><td>{{anime.name | jsonParser}}</td></a>
+                <td>{{anime.synopsis | jsonParser}}</td>
                 </tr>
             </tbody>
         </table>
