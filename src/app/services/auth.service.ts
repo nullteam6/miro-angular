@@ -10,23 +10,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AuthService {
   private isLoginSubject = new BehaviorSubject<boolean>(false);
-  private tokenSubject = new BehaviorSubject<boolean>(false);
-  private token: string;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
     private keycloakAngular: KeycloakService
   ) { }
-
-  logout(): void {
-    this.keycloakAngular.logout().then(r => {
-      this.isLoginSubject.next(false);
-      // location.reload();
-      this.token = null;
-      this.router.navigate(['/']).then();
-    });
-  }
 
   isLoggedIn(): Observable<boolean> {
     this.keycloakAngular.isLoggedIn().then(r => {
@@ -38,5 +27,11 @@ export class AuthService {
 
   isAdmin(): boolean {
     return this.keycloakAngular.getUserRoles().includes('ROLE_ADMIN')
+
+  logout(): void {
+    this.keycloakAngular.logout().then(r => {
+      this.isLoginSubject.next(false);
+      this.router.navigate(['/']).then();
+    });
   }
 }

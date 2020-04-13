@@ -8,13 +8,13 @@
             </form>
         </div>
     </div>
+
     <div *ngIf="searched" class="row" style="margin: 1rem;" >
         <table class="bg-light table table-striped">
             <thead>
-                <th scope="col"> </th>
-                <th scope="col"> Name </th>
-                <th scope="col"> Description </th>
-
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
             </thead>
             <tbody>
                 <tr *ngFor="let anime of animes">
