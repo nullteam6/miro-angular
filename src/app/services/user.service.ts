@@ -6,7 +6,6 @@ import { KeycloakService } from 'keycloak-angular';
 
 import { User } from '../models/user';
 
-
 @Injectable({
   providedIn: 'root'
 })

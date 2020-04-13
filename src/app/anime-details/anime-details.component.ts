@@ -1,11 +1,10 @@
-import { Anime } from '../models/anime';
-import { SearchAnimeService } from '../services/search-anime.service';
-
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../services/profile.service';
-import { Profile } from '../models/profile';
-import { AnimeBacklog } from '../models/anime-backlog';
 
+import { Anime } from '../models/anime';
+import { Profile } from '../models/profile';
+
+import { SearchAnimeService } from '../services/search-anime.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-anime-details',
@@ -13,22 +12,18 @@ import { AnimeBacklog } from '../models/anime-backlog';
   styleUrls: ['./anime-details.component.sass']
 })
 export class AnimeDetailsComponent implements OnInit {
-
   profile = new Profile();
   selectedAnime = new Anime();
   cleanedAnime = new Anime();
   backLog = new AnimeBacklog();
 
-  constructor(private s: SearchAnimeService, private profServ: ProfileService) { 
+  constructor(private s: SearchAnimeService, private profServ: ProfileService) {
     this.profServ.getProfile().subscribe((data: any) => {
       this.profile = data;
-      console.log("Hello")
-      console.log("Profile = " + this.profile);
     });
   }
 
-  ngOnInit(): void 
-  {
+  ngOnInit(): void {
     this.selectedAnime = this.s.passAnime();
   }
 
@@ -73,7 +68,7 @@ export class AnimeDetailsComponent implements OnInit {
     }
     this.cleanAnime();
     this.profile.aniBacklog.backlist.push(this.cleanedAnime);
-    alert("Added anime to your ")
+    alert("Added anime to your list!")
     this.profServ.sendProfile(this.profile);
   }
 

@@ -1,0 +1,49 @@
+<div class="card-body">
+    <h5 class="card-title">Users</h5>
+    <table class="table table-striped">
+        <caption>List of Users</caption>
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Name</th>
+                <th scope="col">eMail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList.list" (click)="displayUserProfile(content, user)">
+                <td>{{user.entryId}}</td>
+                <td>{{user.uid}}</td>
+                <td>{{user.firstName + ' ' + user.lastName}}</td>
+                <td>{{user.mail}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Yeeted a profile</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="updateUser()">
+            <p>
+                <label>Email:</label>
+                <input type="email" formControlName="email">
+            </p>
+            <p>
+                <label>First Name:</label>
+                <input type="text" formControlName="firstName">
+            </p>
+            <p>
+                <label>Last Name:</label>
+                <input type="text" formControlName="lastName">
+            </p>
+            <p>
+                <button type="submit" [disabled]="!form.valid">Submit</button>
+            </p>
+        </form>
+    </div>
+</ng-template>

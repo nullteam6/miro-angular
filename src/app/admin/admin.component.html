@@ -1,0 +1,17 @@
+<div class="col-lg-10 offset-1">
+    <div class="card text-center">
+        <div class="card-header">
+            <ul ngbNav class="nav nav-pills card-header-pills">
+                <li [ngbNavItem]>
+                    <a ngbNavLink routerLink="/admin/users">Users</a>
+                </li>
+                <li [ngbNavItem]>
+                    <a class="nav-link" href="#">Site Config</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

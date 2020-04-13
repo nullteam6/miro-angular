@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { UserService } from './user.service';
-import { Profile } from '../models/profile';
+import { HttpClient } from '@angular/common/http';
 
-import { HttpClient, } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { Profile } from '../models/profile';
+
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-
   profile = new Profile();
 
   constructor(
@@ -26,23 +26,7 @@ export class ProfileService {
       }));
   }
 
-  // passProfile(username: string): Profile{
-  //   this.getProfile();
-  //   console.log(this.profile);
-  //   return this.profile;
-  // }
-
   sendProfile(profile: Profile) {
-    console.log("Profile = " + this.profile);
-    // this.authService.getToken().then(token => {
-      // console.log(`"${token}"`);
-      // const httpOptions = {
-      //   headers: new HttpHeaders({
-      //     'Content-Type': 'application/json',
-      //     'Authorization': 'Bearer: ' + token + '\''
-      //   })
-      // };
-    // });
-    this.httpClient.put("http://api.4ray.co/BackEnd/profile", profile).subscribe();
+    this.httpClient.put('https://api.4ray.co/BackEnd/profile', profile).subscribe();
   }
 }
