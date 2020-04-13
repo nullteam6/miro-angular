@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, DoBootstrap } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
@@ -14,11 +14,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AnimeDetailsComponent } from './anime-details/anime-details.component'
+import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { TokenInterceptor } from './services/token.interceptor';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
@@ -38,7 +37,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     LoginComponent,
     LogoutComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
     JsonParse
   ],
   imports: [
