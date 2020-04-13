@@ -36,28 +36,7 @@ export class AuthService {
     return this.isLoginSubject.asObservable();
   }
 
-  getCurrentUsername(): string {
-    return this.keycloakAngular.getUsername();
+  isAdmin(): boolean {
+    return this.keycloakAngular.getUserRoles().includes('ROLE_ADMIN')
   }
-
-  getToken(): string {
-    return this.token;
-  }
-
-  // isManager(): boolean {
-  //   if (this.hasToken()) {
-  //     const user: User = JSON.parse(localStorage.getItem('currentUser'));
-  //     return (user.admin ? true : false);
-  //   }
-  //
-  //   return false;
-  // }
-
-  // getUserId(): number {
-  //   return this.hasToken() ? this.user.id : null;
-  // }
-  //
-  // getUsername(): string {
-  //   return this.hasToken() ? this.user.username : null;
-  // }
 }

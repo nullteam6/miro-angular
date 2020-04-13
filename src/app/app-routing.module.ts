@@ -29,6 +29,12 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AppAuthGuard]
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AppAuthGuard],
+    data: { roles: ['ROLE_ADMIN'] }
+  },
   { path: '**', redirectTo: '' },
 ];
 

@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
@@ -22,6 +21,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
+
 import { JsonParse } from './pipes/json-parse';
 
 const keycloakService: KeycloakService = new KeycloakService();
@@ -37,6 +38,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     LoginComponent,
     LogoutComponent,
     ProfileComponent,
+    AdminComponent
     JsonParse
   ],
   imports: [
