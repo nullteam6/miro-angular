@@ -12,6 +12,6 @@ export class UserAdminService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers(offset?: number): Observable<PaginatedList<User>>{
-    return this.httpClient.get<PaginatedList<User>>('http://localhost:8080/BackEnd/user');
+    return this.httpClient.get<PaginatedList<User>>('https://api.4ray.co/BackEnd/user');
   }
 }
