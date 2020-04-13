@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Anime } from '../models/anime';
 import { Profile } from '../models/profile';
+import { AnimeBacklog } from '../models/anime-backlog';
 
 import { SearchAnimeService } from '../services/search-anime.service';
 import { ProfileService } from '../services/profile.service';
@@ -27,7 +28,7 @@ export class AnimeDetailsComponent implements OnInit {
     this.selectedAnime = this.s.passAnime();
   }
 
-  addWatchedList() 
+  addWatchedList()
   {
     if(this.profile.aniBacklog === null)
     {
@@ -51,7 +52,7 @@ export class AnimeDetailsComponent implements OnInit {
       this.backLog.inProgList = [];
       this.profile.aniBacklog = this.backLog;
     }
-    
+
     this.cleanAnime();
     this.profile.aniBacklog.inProgList.push(this.cleanedAnime);
     this.profServ.sendProfile(this.profile);
