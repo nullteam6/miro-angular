@@ -1,0 +1,62 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-1 ml-5 text-dark" style="width: 5rem;">
+        <div class="card">
+          <img class="img-thumbnail "  src={{selectedAnime.logo}} alt="Image of the anime"
+          style="max-height: 10rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{selectedAnime.name}}</h5>
+            <p class="card-text">{{selectedAnime.synopsis}}</p>
+            <p class="card-text">Categories</p>
+            <a routerLink="/search" class="btn btn-primary">Back</a>
+          </div>
+        </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="container">
+  <table class="text-light table table-striped"  >
+    <tr>
+      <th class="align-center">
+        <img src={{selectedAnime.logo}} alt="Official Poster"/>
+      </th>
+    </tr>
+    <tr>
+      <td>Title</td>
+      <td>{{selectedAnime.name}}</td>
+    </tr>
+    <tr>
+      <td><a class="btn btn-primary">Add to Backlog</a></td>
+    </tr>
+  </table>
+</div> -->
+
+<div class="text-light container" style = "margin:7rem; float: left;">
+  <div class="row">
+  <div class="col">
+    <div>
+      <img src={{selectedAnime.logo}} width="300rem">
+    </div>
+  </div>
+  <div class="col">
+    <h3>{{selectedAnime.name}}</h3>
+    <p>{{selectedAnime.synopsis}}</p>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" routerLink="/search" class="btn btn-secondary">Back</button>
+      <button type="button" (click)="addWatchList(selectedAnime)" class="btn btn-secondary">Watch Now</button>
+      <button type="button" (click)="addWatchedList(selectedAnime)" class="btn btn-secondary">Done Watching</button>
+      <button type="button" (click)="addWatchLater(selectedAnime)" class="btn btn-secondary">Watch Later</button>
+  </div>
+  </div>
+ 
+  <div class="col-sm text-light text-left">
+    <ul class="align-content-start" style="width: 50%; list-style: none; background-color: rgba(150, 150, 150, 50%);">
+      <li><span style="text-align: left;">Status:</span>{{selectedAnime.status}}</li>
+      <li><span style="text-align: left;">Episode Count:</span>{{selectedAnime.episodeCount}}</li>
+      <li><span style="text-align: left;">Start Date:</span>{{selectedAnime.startDate}}</li>
+      <li><span style="text-align: left;">End Date:</span>{{selectedAnime.endDate}}</li>
+      <li><span style="text-align: left;">Show Type:</span>{{selectedAnime.showType}}</li>
+    </ul>
+  </div>
+</div>
