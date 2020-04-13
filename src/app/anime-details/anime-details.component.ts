@@ -40,11 +40,9 @@ export class AnimeDetailsComponent implements OnInit {
       this.backLog.finishedList = [];
       this.backLog.inProgList = [];
       this.profile.aniBacklog = this.backLog;
-      console.log("Anime Backlog: "+ JSON.stringify(this.profile.aniBacklog));
     }
-    console.log("Profile id: "+ JSON.stringify(this.profile.id));
+    this.cleanAnime(anime);
     this.profile.aniBacklog.finishedList.push(anime);
-    console.log("Anime finishedList: "+JSON.stringify(this.profile.aniBacklog.finishedList)+" Array Length: "+ this.profile.aniBacklog.finishedList.length);
     this.profServ.sendProfile(this.profile);
   }
   addWatchList(anime: Anime)
@@ -58,9 +56,8 @@ export class AnimeDetailsComponent implements OnInit {
       this.profile.aniBacklog = this.backLog;
       console.log("Anime Backlog: "+ JSON.stringify(this.profile.aniBacklog))
     }
-    console.log("Profile id: "+ JSON.stringify(this.profile.id));
+    this.cleanAnime(anime);
     this.profile.aniBacklog.inProgList.push(anime);
-    console.log("Anime inProgList: "+JSON.stringify(this.profile.aniBacklog.inProgList));
     this.profServ.sendProfile(this.profile);
   }
   addWatchLater(anime: Anime)
@@ -72,11 +69,15 @@ export class AnimeDetailsComponent implements OnInit {
       this.backLog.finishedList = [];
       this.backLog.inProgList = [];
       this.profile.aniBacklog = this.backLog;
-      console.log("Anime Backlog: "+ JSON.stringify(this.profile.aniBacklog))
     }
-    console.log("Profile id: "+ JSON.stringify(this.profile.id));
+    this.cleanAnime(anime);
     this.profile.aniBacklog.backlist.push(anime);
-    console.log("Anime backlist: "+JSON.stringify(this.profile.aniBacklog.backlist));
     this.profServ.sendProfile(this.profile);
+  }
+
+  cleanAnime(anime: Anime){
+    anime.logo = JSON.stringify(anime.logo);
+    anime.name = JSON.stringify(anime.name);
+    anime.synopsis = JSON.stringify(anime.synopsis);
   }
 }
