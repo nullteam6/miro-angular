@@ -16,6 +16,7 @@ export class AnimeDetailsComponent implements OnInit {
 
   profile = new Profile();
   selectedAnime = new Anime();
+  cleanedAnime = new Anime();
   backLog = new AnimeBacklog();
 
   constructor(private s: SearchAnimeService, private profServ: ProfileService) { 
@@ -31,7 +32,7 @@ export class AnimeDetailsComponent implements OnInit {
     this.selectedAnime = this.s.passAnime();
   }
 
-  addWatchedList(anime: Anime) 
+  addWatchedList() 
   {
     if(this.profile.aniBacklog === null)
     {
@@ -41,11 +42,11 @@ export class AnimeDetailsComponent implements OnInit {
       this.backLog.inProgList = [];
       this.profile.aniBacklog = this.backLog;
     }
-    this.cleanAnime(anime);
-    this.profile.aniBacklog.finishedList.push(anime);
+    this.cleanAnime();
+    this.profile.aniBacklog.finishedList.push(this.cleanedAnime);
     this.profServ.sendProfile(this.profile);
   }
-  addWatchList(anime: Anime)
+  addWatchList()
   {
     if(this.profile.aniBacklog === null)
     {
@@ -54,13 +55,13 @@ export class AnimeDetailsComponent implements OnInit {
       this.backLog.finishedList = [];
       this.backLog.inProgList = [];
       this.profile.aniBacklog = this.backLog;
-      console.log("Anime Backlog: "+ JSON.stringify(this.profile.aniBacklog))
     }
-    this.cleanAnime(anime);
-    this.profile.aniBacklog.inProgList.push(anime);
+    
+    this.cleanAnime();
+    this.profile.aniBacklog.inProgList.push(this.cleanedAnime);
     this.profServ.sendProfile(this.profile);
   }
-  addWatchLater(anime: Anime)
+  addWatchLater()
   {
     if(this.profile.aniBacklog === null)
     {
@@ -70,14 +71,21 @@ export class AnimeDetailsComponent implements OnInit {
       this.backLog.inProgList = [];
       this.profile.aniBacklog = this.backLog;
     }
-    this.cleanAnime(anime);
-    this.profile.aniBacklog.backlist.push(anime);
+    this.cleanAnime();
+    this.profile.aniBacklog.backlist.push(this.cleanedAnime);
+    alert("Added anime to your ")
     this.profServ.sendProfile(this.profile);
   }
 
-  cleanAnime(anime: Anime){
-    anime.logo = JSON.stringify(anime.logo);
-    anime.name = JSON.stringify(anime.name);
-    anime.synopsis = JSON.stringify(anime.synopsis);
+  cleanAnime(){
+    this.cleanedAnime.logo = JSON.stringify(this.selectedAnime.logo);
+    this.cleanedAnime.name = JSON.stringify(this.selectedAnime.name);
+    this.cleanedAnime.synopsis = JSON.stringify(this.selectedAnime.synopsis);
+    this.cleanedAnime.status = this.selectedAnime.status;
+    this.cleanedAnime.id = this.selectedAnime.id;
+    this.cleanedAnime.episodeCount = this.selectedAnime.episodeCount;
+    this.cleanedAnime.showType = this.selectedAnime.showType;
+    this.cleanedAnime.startDate = this.selectedAnime.startDate;
+    this.cleanedAnime.endDate= this.selectedAnime.endDate;
   }
 }

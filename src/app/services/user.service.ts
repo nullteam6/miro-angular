@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
 
 import { User } from '../models/user';
-import { Observable } from 'rxjs';
-import { KeycloakService } from 'keycloak-angular';
-import { AuthService } from './auth.service';
+
 
 @Injectable({
   providedIn: 'root'

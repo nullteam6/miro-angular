@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { Profile } from '../models/profile';
-import { User } from '../models/user';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service';
+
+import { HttpClient, } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,11 +17,10 @@ export class ProfileService {
   constructor(
     private userServ: UserService,
     private httpClient: HttpClient,
-    private authService: AuthService,
   ) { }
 
   getProfile(): Observable<Profile> {
-    return this.userServ.getUser(this.authService.getCurrentUsername())
+    return this.userServ.getUser()
       .pipe(map((data: any) => {
         return data.profile;
       }));
