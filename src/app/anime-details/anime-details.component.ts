@@ -21,13 +21,13 @@ export class AnimeDetailsComponent implements OnInit {
 
   constructor(
     private searchService: SearchAnimeService, 
-    private profilfeServ: ProfileService, 
+    private profileServ: ProfileService, 
     private authService: AuthService
     ) {
     this.authService.isLoggedIn().subscribe((data) => {
       this.isLoggedIn = data;
       if (data) { 
-        this.profilfeServ.getProfile().subscribe((profile: any) => {
+        this.profileServ.getProfile().subscribe((profile: any) => {
           this.profile = profile;
         });
       }
@@ -39,15 +39,55 @@ export class AnimeDetailsComponent implements OnInit {
   }
 
   addWatchedList() {
+    this.deleteAnime();
     this.profile.aniBacklog.finishedList.push(this.selectedAnime);
-    this.profilfeServ.sendProfile(this.profile);
+    this.profileServ.sendProfile(this.profile);
   }
   addWatchList() {
+    this.deleteAnime();
     this.profile.aniBacklog.inProgList.push(this.selectedAnime);
-    this.profilfeServ.sendProfile(this.profile);
+    this.profileServ.sendProfile(this.profile);
   }
   addWatchLater() {
+    this.deleteAnime();
     this.profile.aniBacklog.backlist.push(this.selectedAnime);
-    this.profilfeServ.sendProfile(this.profile);
+    this.profileServ.sendProfile(this.profile);
   }
+  
+  deleteAnime()
+  {
+    let index: number = this.checkList(this.profile.aniBacklog.finishedList);
+    
+    if( index !== -1){
+      this.profile.aniBacklog.finishedList.splice(index, 1);
+      this.profileServ.sendProfile(this.profile);
+      return;
+    }
+    index = this.checkList(this.profile.aniBacklog.inProgList);
+    if( index !== -1){
+      this.profile.aniBacklog.inProgList.splice(index, 1);
+      this.profileServ.sendProfile(this.profile);
+      return;
+    }
+    index = this.checkList(this.profile.aniBacklog.backlist);
+    if( index !== -1){
+      this.profile.aniBacklog.backlist.splice(index, 1);
+      this.profileServ.sendProfile(this.profile);
+      return;
+    } 
+  }
+  checkList(list: Anime[]): number
+  {
+    let index: number = -1;
+    for( let anime of list)
+    {
+      index=index+1;
+      console.log(this.selectedAnime.id === anime.id)
+      if(this.selectedAnime.id === anime.id)
+      {
+        return index;
+      }
+    }
+    return -1;
+  } 
 }
