@@ -13,7 +13,7 @@ import { Anime } from '../models/anime';
 import { JsonParse } from '../pipes/json-parse';
 
 @Component({
-  selector: 'app-profile-selected-modal',
+  selector: 'app-selected-anime-modal',
   template: `
     <div class="modal-header">
       <h4 class="modal-title">{{ title }}</h4>
@@ -23,11 +23,11 @@ import { JsonParse } from '../pipes/json-parse';
     </div>
     <div class="modal-body text-center">
       <p>Move to:</p>
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-dark">Planning</button>
-        <button type="button" class="btn btn-dark">Watching</button>
-        <button type="button" class="btn btn-dark">Completed</button>
-        <button type="button" class="btn btn-dark">Dropped</button>
+      <div class="btn-group" role="group" aria-label="Move buttons">
+        <button *ngIf="!isInList('backlist')" type="button" class="btn btn-dark">Planning</button>
+        <button *ngIf="!isInList('inProgList')" type="button" class="btn btn-dark">Watching</button>
+        <button *ngIf="!isInList('finishedList')" type="button" class="btn btn-dark">Completed</button>
+        <button *ngIf="!isInList('droppedList')" type="button" class="btn btn-dark">Dropped</button>
       </div>
     </div>
     <div class="modal-footer">
@@ -35,7 +35,7 @@ import { JsonParse } from '../pipes/json-parse';
     </div>
   `
 })
-export class ProfileSelectedModalComponent {
+export class SelectedAnimeModalComponent {
   @Input() profile: Profile;
   @Input() animeListId: string;
   @Input() animeList: Anime[];
@@ -47,14 +47,17 @@ export class ProfileSelectedModalComponent {
     private profileService: ProfileService
   ) { }
 
+  getAnimeId(): number {
+    return this.animeList.indexOf(this.anime, 0);
+  }
+
+  isInList(listName: string): boolean {
+    return this.profile.aniBacklog[listName].includes(this.anime);
+  }
+
   deleteAnime() {
-    for (const animeObj of this.animeList) {
-      if (animeObj === this.anime) {
-        const animeId = this.animeList.indexOf(animeObj, 0);
-        this.profile.aniBacklog[this.animeListId].splice(animeId, 1);
-        this.updateProfile();
-      }
-    }
+    this.profile.aniBacklog[this.animeListId].splice(this.getAnimeId(), 1);
+    this.updateProfile();
   }
 
   updateProfile() {
@@ -114,7 +117,7 @@ export class ProfileComponent implements OnInit {
   }
 
   open(profile: Profile, animeListId: string, animeList: Anime[], anime: Anime) {
-    const modalRef = this.modalService.open(ProfileSelectedModalComponent);
+    const modalRef = this.modalService.open(SelectedAnimeModalComponent);
     modalRef.componentInstance.profile = profile;
     modalRef.componentInstance.animeListId = animeListId;
     modalRef.componentInstance.animeList = animeList;
