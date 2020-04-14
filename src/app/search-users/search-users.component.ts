@@ -3,7 +3,7 @@ import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { PaginatedList } from '../models/paginated-list';
 import { UserService } from '../services/user.service';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search-users',
