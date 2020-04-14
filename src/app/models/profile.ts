@@ -5,4 +5,5 @@ export class Profile {
   uid: string;
   description: string;
   aniBacklog: AnimeBacklog;
+  followingList: Profile[];
 }
