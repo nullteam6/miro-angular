@@ -24,14 +24,14 @@ import { JsonParse } from '../pipes/json-parse';
     <div class="modal-body text-center">
       <p>Move to:</p>
       <div class="btn-group" role="group" aria-label="Move buttons">
-        <button *ngIf="!isInList('backlist')" type="button" class="btn btn-dark">Planning</button>
-        <button *ngIf="!isInList('inProgList')" type="button" class="btn btn-dark">Watching</button>
-        <button *ngIf="!isInList('finishedList')" type="button" class="btn btn-dark">Completed</button>
-        <button *ngIf="!isInList('droppedList')" type="button" class="btn btn-dark">Dropped</button>
+        <button *ngIf="!isInList('backlist')" type="button" class="btn btn-dark" (click)="moveAnime('backlist'); activeModal.close('Close click')">Planning</button>
+        <button *ngIf="!isInList('inProgList')" type="button" class="btn btn-dark" (click)="moveAnime('inProgList'); activeModal.close('Close click')">Watching</button>
+        <button *ngIf="!isInList('finishedList')" type="button" class="btn btn-dark" (click)="moveAnime('finishedList'); activeModal.close('Close click')">Completed</button>
+        <button *ngIf="!isInList('droppedList')" type="button" class="btn btn-dark" (click)="moveAnime('droppedList'); activeModal.close('Close click')">Dropped</button>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="deleteAnime(); activeModal.close('Close click')">Remove</button>
+      <button type="button" class="btn btn-danger" (click)="deleteAnime(); updateProfile(); activeModal.close('Close click')">Remove</button>
     </div>
   `
 })
@@ -47,6 +47,12 @@ export class SelectedAnimeModalComponent {
     private profileService: ProfileService
   ) { }
 
+  moveAnime(listName: string) {
+    this.deleteAnime();
+    this.profile.aniBacklog[listName].push(this.anime);
+    this.updateProfile();
+  }
+
   getAnimeId(): number {
     return this.animeList.indexOf(this.anime, 0);
   }
@@ -57,7 +63,6 @@ export class SelectedAnimeModalComponent {
 
   deleteAnime() {
     this.profile.aniBacklog[this.animeListId].splice(this.getAnimeId(), 1);
-    this.updateProfile();
   }
 
   updateProfile() {
