@@ -16,12 +16,12 @@ export class ProfileService {
   profile = new Profile();
 
   constructor(
-    private userServ: UserService,
+    private userService: UserService,
     private httpClient: HttpClient,
   ) { }
 
   getProfile(): Observable<Profile> {
-    return this.userServ.getUser()
+    return this.userService.getUser()
       .pipe(map((data: any) => {
         return data.profile;
       }));

@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   <ngb-accordion [closeOthers]="true" activeIds="backlist">
-    <ngb-panel *ngFor="let animeList of animeListArr" id="{{ animeList.id }}" title="{{ animeList.name }}">
+    <ngb-panel *ngFor="let animeList of animeListArr" id="{{ animeList['id'] }}" title="{{ animeList['name'] }}">
       <ng-template ngbPanelContent>
 <!--        TODO: Search within lists-->
 <!--        <form>-->
@@ -9,40 +9,40 @@
 <!--          </div>-->
 <!--        </form>-->
 
-        <table class="table table-striped">
+        <table class="table table-hover table-borderless table-responsive-md">
           <thead>
           <tr>
             <th scope="col"></th>
             <th scope="col">Title</th>
-            <th scope="col">Episode Count</th>
+            <th scope="col">Episodes</th>
             <th scope="col">Format</th>
             <th scope="col">Status</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">End Date</th>
+            <th scope="col">Started</th>
+            <th scope="col">Ended</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let anime of animeList.listName">
+          <tr *ngFor="let anime of animeList['listName']" (click)="open(profile, animeList['id'], animeList['listName'], anime)">
             <td>
-              <img src="{{ anime.logo | jsonParser }}" alt="Anime logo" width="50px" height="50px">
+              <img src="{{ anime['logo'] | jsonParser }}" alt="Anime logo" width="50px" height="50px" class="rounded">
             </td>
             <td>
-              <p>{{ anime.name | jsonParser }}</p>
+              <p>{{ anime['name'] | jsonParser }}</p>
             </td>
             <td>
-              <p>{{ anime.episodeCount }}</p>
+              <p>{{ anime['episodeCount'] }}</p>
             </td>
             <td>
-              <p>{{ anime.showType | jsonParser }}</p>
+              <p>{{ anime['showType'] | jsonParser }}</p>
             </td>
             <td>
-              <p>{{ anime.status | jsonParser | titlecase }}</p>
+              <p>{{ anime['status'] | jsonParser | titlecase }}</p>
             </td>
             <td>
-              <p>{{ anime.startDate | jsonParser | date }}</p>
+              <p>{{ anime['startDate'] | jsonParser | date }}</p>
             </td>
             <td>
-              <p>{{ anime.endDate | jsonParser | date }}</p>
+              <p>{{ anime['endDate'] | jsonParser | date }}</p>
             </td>
           </tr>
           </tbody>
