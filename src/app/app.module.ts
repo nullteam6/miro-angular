@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
 
 import { JsonParse } from './pipes/json-parse';
+import { SearchUsersComponent } from './search-users/search-users.component';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
@@ -38,7 +39,8 @@ const keycloakService: KeycloakService = new KeycloakService();
     LogoutComponent,
     ProfileComponent,
     AdminComponent,
-    JsonParse
+    JsonParse,
+    SearchUsersComponent
   ],
   imports: [
     BrowserModule,
