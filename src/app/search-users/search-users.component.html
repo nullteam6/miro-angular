@@ -1,0 +1,30 @@
+<div class="card col-lg-10 offset-1">
+    <div class="card-header">
+        <div class="float-right">
+            <div class="input-group">
+                <form [formGroup]="formGroup">
+                    <input type="text" formControlName="userInput" (keydown)="keydown($event)">
+                    <button class="btn btn-default bg-primary" (click)="searchForUser()">Submit</button>
+                </form>
+            </div>    
+        </div>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Users</h5>
+        <table class="table table-striped">
+            <caption>Search for Users</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Bio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of profileList.list" (click)="displayUserProfile(user)">
+                    <td>{{user.uid}}</td>
+                    <td>{{user.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

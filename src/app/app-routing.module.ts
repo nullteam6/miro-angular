@@ -9,6 +9,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchUsersComponent } from './search-users/search-users.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -34,6 +35,11 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [AppAuthGuard],
     data: { roles: ['ROLE_ADMIN'] }
+  },
+  {
+    path: 'users',
+    component: SearchUsersComponent,
+    canActivate: [AppAuthGuard]
   },
   { path: '**', redirectTo: '' },
 ];

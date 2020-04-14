@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Profile } from '../models/profile';
 
 import { UserService } from './user.service';
+import { PaginatedList } from '../models/paginated-list';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,13 @@ export class ProfileService {
 
   sendProfile(profile: Profile) {
     this.httpClient.put('https://api.4ray.co/BackEnd/profile', profile).subscribe();
+  }
+
+  getAll(offset?: number): Observable<PaginatedList<Profile>> {
+    return this.httpClient.get<PaginatedList<Profile>>('https://api.4ray.co/BackEnd/profile');
+  }
+
+  search(uid: string, offset?: number): Observable<PaginatedList<Profile>> {
+    return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.co/BackEnd/profile?search=${uid}`);
   }
 }
