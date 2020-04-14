@@ -5,7 +5,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { UserService } from '../services/user.service';
 
 import { Profile } from '../models/profile';
-import { AnimeBacklog } from '../models/anime-backlog';
+import {AnimeBacklog} from '../models/anime-backlog'
 
 @Component({
   selector: 'app-profile',
@@ -41,16 +41,10 @@ export class ProfileComponent implements OnInit {
           name: 'Finished',
           listName: this.profile.aniBacklog.finishedList,
         };
-        const droppedList = {
-          id: 'droppedList',
-          name: 'Dropped',
-          listName: this.profile.aniBacklog.droppedList,
-        };
 
         this.animeListArr.push(planToWatchList);
         this.animeListArr.push(inProgressList);
         this.animeListArr.push(finishedList);
-        this.animeListArr.push(droppedList);
       }
     );
   }

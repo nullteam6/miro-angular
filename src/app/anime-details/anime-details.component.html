@@ -11,9 +11,9 @@
       <p>{{ selectedAnime.synopsis | jsonParser }}</p>
       <div *ngIf="isLoggedIn" class="btn-group" role="group" aria-label="Basic example">
         <button type="button" routerLink="/search" class="btn btn-secondary">Back</button>
-        <button type="button" (click)="addWatchList()" class="btn btn-secondary">Watch Now</button>
-        <button type="button" (click)="addWatchedList()" class="btn btn-secondary">Done Watching</button>
-        <button type="button" (click)="addWatchLater()" class="btn btn-secondary">Watch Later</button>
+        <button *ngIf="checkList(this.profile.aniBacklog.inProgList) === -1" type="button" (click)="addWatchList()" class="btn btn-secondary">Watch Now</button>
+        <button *ngIf="checkList(this.profile.aniBacklog.finishedList) === -1" type="button" (click)="addWatchedList()" class="btn btn-secondary">Done Watching</button>
+        <button *ngIf="checkList(this.profile.aniBacklog.backlist) === -1" type="button" (click)="addWatchLater()" class="btn btn-secondary">Watch Later</button>
       </div>
     </div>
 
