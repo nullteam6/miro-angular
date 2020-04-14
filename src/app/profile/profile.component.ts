@@ -17,7 +17,7 @@ import { ProfileDisplayComponent } from '../profile-display/profile-display.comp
   providers: [JsonParse]
 })
 export class ProfileComponent implements OnInit {
-  public profile: Profile;
+  public profile = new Profile();
   public animeListArr = [];
   @ViewChild(ProfileDisplayComponent) profileDisplay: ProfileDisplayComponent;
 
