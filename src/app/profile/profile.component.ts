@@ -99,10 +99,16 @@ export class ProfileComponent implements OnInit {
           name: 'Completed',
           listName: this.profile.aniBacklog.finishedList,
         };
+        const droppedList = {
+          id: 'droppedList',
+          name: 'Dropped',
+          listName: this.profile.aniBacklog.droppedList,
+        };
 
         this.animeListArr.push(planToWatchList);
         this.animeListArr.push(inProgressList);
         this.animeListArr.push(finishedList);
+        this.animeListArr.push(droppedList);
       }
     );
   }
