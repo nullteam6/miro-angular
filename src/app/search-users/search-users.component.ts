@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../services/profile.service';
 import { PaginatedList } from '../models/paginated-list';
-import { UserService } from '../services/user.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileDisplayComponent } from '../profile-display/profile-display.component';
 
 @Component({
   selector: 'app-search-users',
@@ -18,13 +18,13 @@ export class SearchUsersComponent implements OnInit {
     userInput: new FormControl(''),
   });
   selectedProfile: Profile;
-  selectedProfileContent = [];
   selectedIsFollowed: boolean = false;
+  @ViewChild(ProfileDisplayComponent) profileDisplay: ProfileDisplayComponent;
 
   constructor(
     private profileService: ProfileService,
-    private userService: UserService,
     public modalService: NgbModal) {
+    this.profileList = new PaginatedList<Profile>();
     this.profileService.getProfile().subscribe((data: Profile) => {
       this.loggedInProfile = data;
     });
@@ -43,56 +43,35 @@ export class SearchUsersComponent implements OnInit {
     })
   }
 
-  keydown(event) {
+  keydown(event): void {
     if (event.key === 'Enter') {
       this.searchForUser();
     }
   }
 
-  open(content, profile: Profile) {
+  openModal(profile: Profile) {
     this.selectedIsFollowed = false;
     this.selectedProfile = profile;
-    this.buildModalList(profile);
-    if (this.loggedInProfile.followingList.includes(profile))
-      this.selectedIsFollowed = true;
-    this.modalService.open(content,{size: 'xl', scrollable: true});
+    this.loggedInProfile.followingList.forEach(element => {
+      if (element.uid === profile.uid)
+        this.selectedIsFollowed = true;      
+    });
+    this.profileDisplay.setProfile(profile, false);
+    document.getElementById('profileHeader').innerHTML = `User profile: ${profile.uid}`;
+    document.getElementById('profileModal').style.display = 'block';
   }
 
-  buildModalList(profile: Profile) {
-    this.selectedProfileContent = new Array();
-    const planToWatchList = {
-      id: 'backlist',
-      name: 'Plan to Watch',
-      listContent: profile.aniBacklog.backlist,
-    };
-    const inProgressList = {
-      id: 'inProgList',
-      name: 'In Progress',
-      listContent: profile.aniBacklog.inProgList,
-    };
-    const finishedList = {
-      id: 'finishedList',
-      name: 'Finished',
-      listContent: profile.aniBacklog.finishedList,
-    };
-    const droppedList = {
-      id: 'droppedList',
-      name: 'Dropped',
-      listContent: profile.aniBacklog.droppedList,
-    };
-    this.selectedProfileContent.push(planToWatchList);
-    this.selectedProfileContent.push(inProgressList);
-    this.selectedProfileContent.push(finishedList);
-    this.selectedProfileContent.push(droppedList);
+  closeModal() {
+    document.getElementById('profileModal').style.display = 'none';
   }
 
-  follow(profile: Profile) {
+  follow(profile: Profile): void {
     this.loggedInProfile.followingList.push(this.selectedProfile);
     this.profileService.sendProfile(this.loggedInProfile);
     this.modalService.dismissAll();
   }
 
-  unfollow(profile: Profile) {
+  unfollow(profile: Profile): void {
     this.loggedInProfile.followingList = this.loggedInProfile.followingList.filter(e => e.uid != profile.uid);
     this.profileService.sendProfile(this.loggedInProfile);
     this.modalService.dismissAll();

@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of profileList.list" (click)="open(content, user)">
+                <tr *ngFor="let user of profileList.list" (click)="openModal(user)">
                     <td>{{user.uid}}</td>
                     <td>{{user.description}}</td>
                 </tr>
@@ -28,61 +28,22 @@
         </table>
     </div>
 </div>
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">User Profile: {{selectedProfile.uid}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div class="input-group">
-            <button *ngIf="!selectedIsFollowed"class="btn btn-primary" (click)="follow(selectedProfile)">Follow</button>
-            <button *ngIf="selectedIsFollowed"class="btn btn-danger" (click)="unfollow(selectedProfile)">Unfollow</button>
+<div class="modal" id="profileModal">
+    <div class="modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="profileHeader">User Profile: </h4>
+                <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <button *ngIf="!selectedIsFollowed"class="btn btn-primary" (click)="follow(selectedProfile)">Follow</button>
+                    <button *ngIf="selectedIsFollowed"class="btn btn-danger" (click)="unfollow(selectedProfile)">Unfollow</button>
+                </div>
+                <profile-display></profile-display>
+            </div>
         </div>
-        <ngb-accordion [closeOthers]="true" activeIds="backlist">
-            <ngb-panel *ngFor="let animeList of selectedProfileContent" id="{{ animeList.id }}" title="{{ animeList.name }}">
-              <ng-template ngbPanelContent>
-                <table class="table table-striped">
-                  <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Episode Count</th>
-                    <th scope="col">Format</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr *ngFor="let anime of animeList.listContent">
-                    <td>
-                      <img src="{{ anime.logo | jsonParser }}" alt="Anime logo" width="50px" height="50px">
-                    </td>
-                    <td>
-                      <p>{{ anime.name | jsonParser }}</p>
-                    </td>
-                    <td>
-                      <p>{{ anime.episodeCount }}</p>
-                    </td>
-                    <td>
-                      <p>{{ anime.showType | jsonParser }}</p>
-                    </td>
-                    <td>
-                      <p>{{ anime.status | jsonParser | titlecase }}</p>
-                    </td>
-                    <td>
-                      <p>{{ anime.startDate | jsonParser | date }}</p>
-                    </td>
-                    <td>
-                      <p>{{ anime.endDate | jsonParser | date }}</p>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </ng-template>
-            </ngb-panel>
-          </ngb-accordion>
     </div>
-</ng-template>
+</div> 

@@ -19,11 +19,12 @@ import { SearchAnimeComponent } from './search-anime/search-anime.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent, SelectedAnimeModalComponent } from './profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
 
 import { JsonParse } from './pipes/json-parse';
 import { SearchUsersComponent } from './search-users/search-users.component';
+import { ProfileDisplayComponent, SelectedAnimeModalComponent } from './profile-display/profile-display.component';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
@@ -42,6 +43,7 @@ const keycloakService: KeycloakService = new KeycloakService();
     AdminComponent,
     JsonParse,
     SearchUsersComponent,
+    ProfileDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ const keycloakService: KeycloakService = new KeycloakService();
       provide: KeycloakService,
       useValue: keycloakService
     },
+    JsonParse
   ],
   entryComponents: [AppComponent]
 })
