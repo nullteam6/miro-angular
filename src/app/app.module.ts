@@ -16,8 +16,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { SearchAnimeComponent } from './search-anime/search-anime.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent, SelectedAnimeModalComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
@@ -35,8 +33,6 @@ const keycloakService: KeycloakService = new KeycloakService();
     SearchAnimeComponent,
     NavbarComponent,
     AnimeDetailsComponent,
-    LoginComponent,
-    LogoutComponent,
     ProfileComponent,
     SelectedAnimeModalComponent,
     AdminComponent,
