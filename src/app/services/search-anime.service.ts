@@ -18,7 +18,7 @@ export class SearchAnimeService {
     return this.http.get<any>(`https://api.4ray.co/BackEnd/anime/${name}`);
   }
 
-  getAnimeOffset(name: String, offset: number): Observable<any> {
+  getAnimeOffset(name: string, offset: number): Observable<any> {
     name = name.replace(' ', '%20');
     return this.http.get<any>(`https://api.4ray.co/BackEnd/anime/${name}?offset=${offset}`);
   }

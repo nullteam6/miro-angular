@@ -28,14 +28,14 @@ export class SearchAnimeComponent implements OnInit {
     this.searched = false;
   }
 
-  viewParse(data: any): void {
-    data.list.forEach((anime: Anime) => {
-      anime.name = JSON.parse(anime.name);
-      anime.synopsis = JSON.parse(anime.synopsis);
-      anime.logo = JSON.parse(anime.logo);
-      this.animes.push(anime);
-    });
-  }
+  // viewParse(data: any): void {
+  //   data.list.forEach((anime: Anime) => {
+  //     anime.name = JSON.parse(anime.name);
+  //     anime.synopsis = JSON.parse(anime.synopsis);
+  //     anime.logo = JSON.parse(anime.logo);
+  //     this.animes.push(anime);
+  //   });
+  // }
 
   onSubmit() {
     this.searchTerm = this.searchForm.controls.name.value;
