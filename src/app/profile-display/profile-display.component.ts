@@ -1,10 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { Profile } from '../models/profile';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ProfileService } from '../services/profile.service';
-import { Anime } from '../models/anime';
-import { JsonParse } from '../pipes/json-parse';
 
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { Profile } from '../models/profile';
+import { Anime } from '../models/anime';
+
+import { ProfileService } from '../services/profile.service';
+
+import { JsonParse } from '../pipes/json-parse';
 
 @Component({
   selector: 'app-selected-anime-modal',
@@ -76,23 +79,21 @@ export class ProfileDisplayComponent {
 
   constructor(private modalService: NgbModal, private jsonParse: JsonParse) { }
 
-  ngOnInit() { }
-
   setArr() {
     this.animeListArr = new Array();
     const planToWatchList = {
       id: 'backlist',
-      name: 'Plan to Watch',
+      name: 'Planning',
       listName: this.profile.aniBacklog.backlist,
     };
     const inProgressList = {
       id: 'inProgList',
-      name: 'In Progress',
+      name: 'Watching',
       listName: this.profile.aniBacklog.inProgList,
     };
     const finishedList = {
       id: 'finishedList',
-      name: 'Finished',
+      name: 'Completed',
       listName: this.profile.aniBacklog.finishedList,
     };
     const droppedList = {
