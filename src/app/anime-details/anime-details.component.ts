@@ -20,13 +20,13 @@ export class AnimeDetailsComponent implements OnInit {
   isLoggedIn: boolean;
 
   constructor(
-    private searchService: SearchAnimeService, 
-    private profileServ: ProfileService, 
+    private searchService: SearchAnimeService,
+    private profileServ: ProfileService,
     private authService: AuthService
     ) {
     this.authService.isLoggedIn().subscribe((data) => {
       this.isLoggedIn = data;
-      if (data) { 
+      if (data) {
         this.profileServ.getProfile().subscribe((profile: any) => {
           this.profile = profile;
         });
@@ -53,11 +53,11 @@ export class AnimeDetailsComponent implements OnInit {
     this.profile.aniBacklog.backlist.push(this.selectedAnime);
     this.profileServ.sendProfile(this.profile);
   }
-  
+
   deleteAnime()
   {
     let index: number = this.checkList(this.profile.aniBacklog.finishedList);
-    
+
     if( index !== -1){
       this.profile.aniBacklog.finishedList.splice(index, 1);
       this.profileServ.sendProfile(this.profile);
@@ -74,7 +74,7 @@ export class AnimeDetailsComponent implements OnInit {
       this.profile.aniBacklog.backlist.splice(index, 1);
       this.profileServ.sendProfile(this.profile);
       return;
-    } 
+    }
   }
   checkList(list: Anime[]): number
   {
@@ -82,12 +82,11 @@ export class AnimeDetailsComponent implements OnInit {
     for( let anime of list)
     {
       index=index+1;
-      console.log(this.selectedAnime.id === anime.id)
       if(this.selectedAnime.id === anime.id)
       {
         return index;
       }
     }
     return -1;
-  } 
+  }
 }
