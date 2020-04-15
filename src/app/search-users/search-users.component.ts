@@ -52,8 +52,10 @@ export class SearchUsersComponent implements OnInit {
   openModal(profile: Profile) {
     this.selectedIsFollowed = false;
     this.selectedProfile = profile;
-    if (this.loggedInProfile.followingList.includes(profile))
-      this.selectedIsFollowed = true;
+    this.loggedInProfile.followingList.forEach(element => {
+      if (element.uid === profile.uid)
+        this.selectedIsFollowed = true;      
+    });
     this.profileDisplay.setProfile(profile, false);
     document.getElementById('profileHeader').innerHTML = `User profile: ${profile.uid}`;
     document.getElementById('profileModal').style.display = 'block';

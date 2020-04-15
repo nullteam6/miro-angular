@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   public profile: Profile;
   public animeListArr = [];
   @ViewChild(ProfileDisplayComponent) profileDisplay: ProfileDisplayComponent;
-
+  
   constructor(
     private userService: UserService,
   ) {
