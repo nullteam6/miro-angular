@@ -14,11 +14,11 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private keycloakAngular: KeycloakService
+    private keycloakService: KeycloakService
   ) { }
 
   isLoggedIn(): Observable<boolean> {
-    this.keycloakAngular.isLoggedIn().then(r => {
+    this.keycloakService.isLoggedIn().then(r => {
       if (r) { this.isLoginSubject.next(true); }
     });
 
@@ -26,11 +26,15 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    return this.keycloakAngular.getUserRoles().includes('ROLE_ADMIN');
+    return this.keycloakService.getUserRoles().includes('ROLE_ADMIN');
+  }
+
+  login(): void {
+    this.keycloakService.login().then();
   }
 
   logout(): void {
-    this.keycloakAngular.logout().then(r => {
+    this.keycloakService.logout().then(r => {
       this.isLoginSubject.next(false);
       this.router.navigate(['/']).then();
     });

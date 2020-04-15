@@ -5,14 +5,14 @@ import { KeycloakService, KeycloakAuthGuard } from 'keycloak-angular';
 
 @Injectable()
 export class AppAuthGuard extends KeycloakAuthGuard {
-  constructor(protected router: Router, protected keycloakAngular: KeycloakService) {
-    super(router, keycloakAngular);
+  constructor(protected router: Router, protected keycloakService: KeycloakService) {
+    super(router, keycloakService);
   }
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise(async (resolve) => {
       if (!this.authenticated) {
-        await this.keycloakAngular.login();
+        await this.keycloakService.login();
         return;
       }
 
@@ -23,6 +23,7 @@ export class AppAuthGuard extends KeycloakAuthGuard {
         if (!this.roles || this.roles.length === 0) {
           resolve(false);
         }
+
         let granted = false;
         for (const requiredRole of requiredRoles) {
           if (this.roles.indexOf(requiredRole) > -1) {
