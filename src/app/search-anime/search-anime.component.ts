@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Anime } from '../models/anime';
 
 import { SearchAnimeService } from '../services/search-anime.service';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PaginatedList } from '../models/paginated-list';
 
 @Component({
@@ -39,15 +39,15 @@ export class SearchAnimeComponent implements OnInit {
 
   onSubmit() {
     this.searchTerm = this.searchForm.controls.name.value;
-    let observable: Observable<PaginatedList<Anime>>;
+    let obs: Observable<PaginatedList<Anime>>;
     if (this.searchTerm == null) {
       this.searched = false;
-      observable = this.searchService.getAllAnime();
+      obs = this.searchService.getAllAnime();
     } else {
       this.searched = true;
-      observable = this.searchService.getAnime(this.searchTerm);
+      obs = this.searchService.getAnime(this.searchTerm);
     }
-    this.getPage(observable);
+    this.getPage(obs);
   }
 
   getPage(animeObservable: Observable<PaginatedList<Anime>>) {
