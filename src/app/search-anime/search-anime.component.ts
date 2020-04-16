@@ -11,7 +11,7 @@ import { SearchAnimeService } from '../services/search-anime.service';
   styleUrls: ['./search-anime.component.sass']
 })
 export class SearchAnimeComponent implements OnInit {
-  constructor(private s: SearchAnimeService) { }
+  constructor(private searchAnimeService: SearchAnimeService) { }
 
   animes: Anime[] = [];
   searched: boolean;
@@ -21,7 +21,7 @@ export class SearchAnimeComponent implements OnInit {
   searchTerm: string;
 
   searchForm = new FormGroup({
-   name: new FormControl(''),
+    name: new FormControl(''),
   });
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class SearchAnimeComponent implements OnInit {
 
   onSubmit() {
     this.searchTerm = this.searchForm.controls.name.value;
-    this.s.getAnime(this.searchTerm).subscribe(
+    this.searchAnimeService.getAnime(this.searchTerm).subscribe(
       (data: any) => {
         this.animes = data.list;
         this.searched = true;
@@ -49,7 +49,7 @@ export class SearchAnimeComponent implements OnInit {
   }
 
   pageChange() {
-    this.s.getAnimeOffset(this.searchTerm, (this.page * 10) - 10).subscribe(
+    this.searchAnimeService.getAnimeOffset(this.searchTerm, (this.page * 10) - 10).subscribe(
       (data: any) => {
         this.animes = data.list;
       }
@@ -57,6 +57,6 @@ export class SearchAnimeComponent implements OnInit {
   }
 
   onClick(anime: Anime): void {
-    this.s.saveAnime(anime);
+    this.searchAnimeService.saveAnime(anime);
   }
 }

@@ -68,14 +68,14 @@ export class SelectedAnimeModalComponent {
 }
 
 @Component({
-  selector: 'profile-display',
+  selector: 'app-profile-display',
   templateUrl: './profile-display.component.html',
   styleUrls: ['./profile-display.component.sass']
 })
 export class ProfileDisplayComponent {
   public profile: Profile;
   public animeListArr = [];
-  public editable: boolean = false;
+  public editable = false;
 
   constructor(private modalService: NgbModal, private jsonParse: JsonParse) { }
 

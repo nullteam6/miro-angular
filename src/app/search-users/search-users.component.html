@@ -6,7 +6,7 @@
                     <input type="text" formControlName="userInput" (keydown)="keydown($event)">
                     <button class="btn btn-default bg-primary" (click)="searchForUser()">Submit</button>
                 </form>
-            </div>    
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -39,11 +39,11 @@
             </div>
             <div class="modal-body">
                 <div class="input-group">
-                    <button *ngIf="!selectedIsFollowed"class="btn btn-primary" (click)="follow(selectedProfile)">Follow</button>
-                    <button *ngIf="selectedIsFollowed"class="btn btn-danger" (click)="unfollow(selectedProfile)">Unfollow</button>
+                    <button *ngIf="!selectedIsFollowed"class="btn btn-primary" (click)="profileService.follow(loggedInProfile, selectedProfile); modalService.dismissAll()">Follow</button>
+                    <button *ngIf="selectedIsFollowed"class="btn btn-danger" (click)="profileService.unfollow(loggedInProfile, selectedProfile); modalService.dismissAll()">Unfollow</button>
                 </div>
-                <profile-display></profile-display>
+                <app-profile-display></app-profile-display>
             </div>
         </div>
     </div>
-</div> 
+</div>
