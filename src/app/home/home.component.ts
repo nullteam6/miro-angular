@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { Anime } from '../models/anime';
 
 import { AnimeService } from '../services/anime.service';
-import {SearchAnimeService} from '../services/search-anime.service';
-import {Router} from '@angular/router';
+import { SearchAnimeService } from '../services/search-anime.service';
 
 @Component({
   selector: 'app-home',
