@@ -20,6 +20,10 @@ export class SearchUsersComponent implements OnInit {
   selectedProfile: Profile;
   selectedIsFollowed: boolean = false;
   @ViewChild(ProfileDisplayComponent) profileDisplay: ProfileDisplayComponent;
+  collectionSize = 0;
+  page = 1;
+  pageSize = 10;
+  searched = false;
 
   constructor(
     public profileService: ProfileService,
@@ -30,17 +34,29 @@ export class SearchUsersComponent implements OnInit {
     });
     this.profileService.getAll().subscribe((data: PaginatedList<Profile>) => {
       this.profileList = data;
+      this.collectionSize = data.totalCount;
     });
    }
 
   ngOnInit(): void {
   }
 
+  pageChange() {
+    if (this.searched) {
+      this.profileService.search(this.formGroup.controls.userInput.value, this.page * 10 - 10);
+    }
+    this.profileService.getAll(this.page * 10 - 10);
+  }
+
   searchForUser() {
-    alert (this.formGroup.controls.userInput.value);
-    this.profileService.search(this.formGroup.controls.userInput.value).subscribe((data: PaginatedList<Profile>) => {
-      this.profileList = data;
-    })
+    if (this.formGroup.controls.userInput.value == null) {
+      this.searched = false;
+      this.profileService.getAll().subscribe(data => this.profileList = data);
+    } else {
+      this.searched = true;
+      this.profileService.search(this.formGroup.controls.userInput.value).subscribe(data => this.profileList = data);
+    }
+
   }
 
   keydown(event): void {

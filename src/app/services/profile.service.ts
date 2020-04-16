@@ -42,10 +42,16 @@ export class ProfileService {
   }
 
   getAll(offset?: number): Observable<PaginatedList<Profile>> {
-    return this.httpClient.get<PaginatedList<Profile>>('https://api.4ray.co/BackEnd/profile');
+    if (offset === undefined){
+      return this.httpClient.get<PaginatedList<Profile>>('https://api.4ray.co/BackEnd/profile');
+    }
+    return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.co/BackEnd/profile?offset=${offset}`);
   }
 
   search(uid: string, offset?: number): Observable<PaginatedList<Profile>> {
-    return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.co/BackEnd/profile?search=${uid}`);
+    if (offset === undefined) {
+      return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.co/BackEnd/profile?search=${uid}`);
+    }
+    return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.com/BackEnd/profile?search=${uid}&offset=${offset}`);    
   }
 }

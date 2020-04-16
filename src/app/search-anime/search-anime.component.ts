@@ -4,6 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Anime } from '../models/anime';
 
 import { SearchAnimeService } from '../services/search-anime.service';
+import { Observable } from 'rxjs';
+import { PaginatedList } from '../models/paginated-list';
 
 @Component({
   selector: 'app-search-anime',
@@ -11,14 +13,20 @@ import { SearchAnimeService } from '../services/search-anime.service';
   styleUrls: ['./search-anime.component.sass']
 })
 export class SearchAnimeComponent implements OnInit {
-  constructor(private searchAnimeService: SearchAnimeService) { }
-
   animes: Anime[] = [];
   searched: boolean;
   page = 1;
   pageSize = 10;
   collectionSize: number;
   searchTerm: string;
+
+  constructor(private searchService: SearchAnimeService) {
+    this.searchService.getAllAnime().subscribe(data => {
+      this.animes = data.list;
+      this.collectionSize = data.totalCount;
+      this.page = 1;
+    });
+  }
 
   searchForm = new FormGroup({
     name: new FormControl(''),
@@ -28,35 +36,42 @@ export class SearchAnimeComponent implements OnInit {
     this.searched = false;
   }
 
-  // viewParse(data: any): void {
-  //   data.list.forEach((anime: Anime) => {
-  //     anime.name = JSON.parse(anime.name);
-  //     anime.synopsis = JSON.parse(anime.synopsis);
-  //     anime.logo = JSON.parse(anime.logo);
-  //     this.animes.push(anime);
-  //   });
-  // }
-
   onSubmit() {
     this.searchTerm = this.searchForm.controls.name.value;
-    this.searchAnimeService.getAnime(this.searchTerm).subscribe(
-      (data: any) => {
-        this.animes = data.list;
-        this.searched = true;
-        this.collectionSize = data.totalCount;
-      }
-    );
+    let obs: Observable<PaginatedList<Anime>>;
+    if (this.searchTerm == null) {
+      this.searched = false;
+      obs = this.searchService.getAllAnime();
+    } else {
+      this.searched = true;
+      obs = this.searchService.getAnime(this.searchTerm);
+    }
+    this.getPage(obs);
+  }
+
+  getPage(animeObservable: Observable<PaginatedList<Anime>>) {
+    animeObservable.subscribe(data => {
+      this.animes = data.list;
+      this.collectionSize = data.totalCount;
+    })
   }
 
   pageChange() {
-    this.searchAnimeService.getAnimeOffset(this.searchTerm, (this.page * 10) - 10).subscribe(
-      (data: any) => {
+    if (this.searched) {
+            this.searchService.getAnime(this.searchTerm, (this.page * 10) - 10).subscribe(
+        (data: any) => {
+          this.animes = data.list;
+        }
+      );
+    } else {
+      this.searchService.getAllAnime(this.page * 10 - 10).subscribe(data => {
         this.animes = data.list;
-      }
-    );
+      }); 
+    }
+
   }
 
   onClick(anime: Anime): void {
-    this.searchAnimeService.saveAnime(anime);
+    this.searchService.saveAnime(anime);
   }
 }
