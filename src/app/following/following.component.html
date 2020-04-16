@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card text-white bg-dark" style="max-width: 18rem;">
+        <div class="card-header">Following</div>
+        <div class="card-body" *ngFor="let profile of loggedInProfile.followingList">
+          <p class="card-text" (click)="open(profile)">{{ profile.uid }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

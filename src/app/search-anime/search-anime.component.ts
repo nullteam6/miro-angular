@@ -26,11 +26,10 @@ export class SearchAnimeComponent implements OnInit {
       this.collectionSize = data.totalCount;
       this.page = 1;
     });
-   }
-
+  }
 
   searchForm = new FormGroup({
-   name: new FormControl(''),
+    name: new FormControl(''),
   });
 
   ngOnInit(): void {

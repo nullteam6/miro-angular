@@ -26,7 +26,7 @@ export class SearchUsersComponent implements OnInit {
   searched = false;
 
   constructor(
-    private profileService: ProfileService,
+    public profileService: ProfileService,
     public modalService: NgbModal) {
     this.profileList = new PaginatedList<Profile>();
     this.profileService.getProfile().subscribe((data: Profile) => {
@@ -69,8 +69,9 @@ export class SearchUsersComponent implements OnInit {
     this.selectedIsFollowed = false;
     this.selectedProfile = profile;
     this.loggedInProfile.followingList.forEach(element => {
-      if (element.uid === profile.uid)
-        this.selectedIsFollowed = true;      
+      if (element.uid === profile.uid) {
+        this.selectedIsFollowed = true;
+      }
     });
     this.profileDisplay.setProfile(profile, false);
     document.getElementById('profileHeader').innerHTML = `User profile: ${profile.uid}`;
@@ -79,17 +80,5 @@ export class SearchUsersComponent implements OnInit {
 
   closeModal() {
     document.getElementById('profileModal').style.display = 'none';
-  }
-
-  follow(profile: Profile): void {
-    this.loggedInProfile.followingList.push(this.selectedProfile);
-    this.profileService.sendProfile(this.loggedInProfile);
-    this.modalService.dismissAll();
-  }
-
-  unfollow(profile: Profile): void {
-    this.loggedInProfile.followingList = this.loggedInProfile.followingList.filter(e => e.uid != profile.uid);
-    this.profileService.sendProfile(this.loggedInProfile);
-    this.modalService.dismissAll();
   }
 }

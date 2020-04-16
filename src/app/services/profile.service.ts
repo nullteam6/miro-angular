@@ -31,6 +31,16 @@ export class ProfileService {
     this.httpClient.put('https://api.4ray.co/BackEnd/profile', profile).subscribe();
   }
 
+  follow(loggedInProfile: Profile, selectedProfile: Profile): void {
+    loggedInProfile.followingList.push(selectedProfile);
+    this.sendProfile(loggedInProfile);
+  }
+
+  unfollow(loggedInProfile: Profile, selectedProfile: Profile): void {
+    loggedInProfile.followingList = loggedInProfile.followingList.filter(e => e.uid !== selectedProfile.uid);
+    this.sendProfile(loggedInProfile);
+  }
+
   getAll(offset?: number): Observable<PaginatedList<Profile>> {
     if (offset === undefined){
       return this.httpClient.get<PaginatedList<Profile>>('https://api.4ray.co/BackEnd/profile');
