@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProfileService} from '../services/profile.service';
-import {User} from '../models/user';
-import {Profile} from '../models/profile';
-import {UserService} from '../services/user.service';
-import {Anime} from '../models/anime';
+
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+import {Profile} from '../models/profile';
+
+import {ProfileService} from '../services/profile.service';
 
 @Component({
   selector: 'app-selected-profile-modal',
@@ -16,7 +16,6 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body text-center">
-<!--      <p>User</p>-->
       <ngb-accordion [closeOthers]="true" activeIds="backlist">
         <ngb-panel *ngFor="let animeList of animeListArr" id="{{ animeList['id'] }}" title="{{ animeList['name'] }}">
           <ng-template ngbPanelContent>
@@ -61,15 +60,6 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
-<!--      <app-profile-display></app-profile-display>-->
-
-<!--      <div class="btn-group" role="group" aria-label="Move buttons">-->
-<!--        <button *ngIf="!isInList('backlist')" type="button" class="btn btn-dark" (click)="moveAnime('backlist'); activeModal.close('Close click')">Planning</button>-->
-<!--        <button *ngIf="!isInList('inProgList')" type="button" class="btn btn-dark" (click)="moveAnime('inProgList'); activeModal.close('Close click')">Watching</button>-->
-<!--        <button *ngIf="!isInList('finishedList')" type="button" class="btn btn-dark" (click)="moveAnime('finishedList'); activeModal.close('Close click')">Completed</button>-->
-<!--        <button *ngIf="!isInList('droppedList')" type="button" class="btn btn-dark" (click)="moveAnime('droppedList'); activeModal.close('Close click')">Dropped</button>-->
-<!--      </div>-->
-
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-warning" (click)="profileService.unfollow(loggedInProfile, selectedProfile); activeModal.close('Close click')">Unfollow</button>
@@ -117,9 +107,6 @@ export class SelectedProfileModalComponent implements OnInit {
     this.animeListArr.push(finishedList);
     this.animeListArr.push(droppedList);
   }
-  // updateProfile() {
-  //   this.profileService.sendProfile(this.profile);
-  // }
 }
 
 @Component({
