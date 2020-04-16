@@ -1,16 +1,20 @@
-<div class="card col-lg-10 offset-1">
+<div class="card col-lg-10 offset-1 mt-5">
     <div class="card-header">
-        <div class="float-right">
-            <div class="input-group">
-                <form [formGroup]="formGroup">
-                    <input type="text" formControlName="userInput" (keydown)="keydown($event)">
-                    <button class="btn btn-default bg-primary" (click)="searchForUser()">Submit</button>
-                </form>
-            </div>    
+        <div class="row">
+            <div class="col-xs-6">
+                <h5 class="card-title">Users</h5>
+            </div>
+            <div class="col-xs-6 ml-auto">
+                <div class="input-group">
+                    <form [formGroup]="formGroup">
+                        <input type="text" formControlName="userInput" (keydown)="keydown($event)">
+                        <button class="btn btn-default bg-primary ml-3" (click)="searchForUser()">Submit</button>
+                    </form>
+                </div>    
+            </div>
         </div>
     </div>
     <div class="card-body">
-        <h5 class="card-title">Users</h5>
         <table class="table table-striped">
             <caption>Search for Users</caption>
             <thead>
@@ -26,6 +30,7 @@
                 </tr>
             </tbody>
         </table>
+        <ngb-pagination [collectionSize]="collectionSize" [maxSize]="5" [(page)]="page" [pageSize]="pageSize" (pageChange)="pageChange()"></ngb-pagination>
     </div>
 </div>
 <div class="modal" id="profileModal">

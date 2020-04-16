@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Anime } from '../models/anime';
+import { PaginatedList } from '../models/paginated-list';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,19 @@ export class SearchAnimeService {
 
   constructor(private http: HttpClient) { }
 
-  getAnime(name: string): Observable<any> {
-    return this.http.get<any>(`https://api.4ray.co/BackEnd/anime/${name}`);
+  getAllAnime(offset?: number) {
+    if (offset === undefined) {
+      return this.http.get<PaginatedList<Anime>>('https://api.4ray.co/BackEnd/anime');
+    }
+    return this.http.get<PaginatedList<Anime>>(`https://api.4ray.co/BackEnd/anime?offset=${offset}`);
   }
 
-  getAnimeOffset(name: string, offset: number): Observable<any> {
+  getAnime(name: string, offset?: number): Observable<PaginatedList<Anime>> {
     name = name.replace(' ', '%20');
-    return this.http.get<any>(`https://api.4ray.co/BackEnd/anime/${name}?offset=${offset}`);
+    if(offset === undefined){
+      return this.http.get<PaginatedList<Anime>>(`https://api.4ray.co/BackEnd/anime/${name}`);
+    }
+    return this.http.get<PaginatedList<Anime>>(`https://api.4ray.co/BackEnd/anime/${name}?offset=${offset}`);
   }
 
   saveAnime(anime: Anime){
