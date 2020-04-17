@@ -24,8 +24,8 @@ export class HomeComponent implements OnInit {
     private router: Router,
   ) {
     carouselConfig.interval = 5000;
-    carouselConfig.wrap = false;
-    carouselConfig.keyboard = false;
+    carouselConfig.wrap = true;
+    carouselConfig.keyboard = true;
     carouselConfig.pauseOnHover = true;
 
     animeService.getTrending().subscribe(

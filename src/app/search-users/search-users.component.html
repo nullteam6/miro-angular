@@ -10,7 +10,7 @@
                         <input type="text" formControlName="userInput" (keydown)="keydown($event)">
                         <button class="btn btn-default bg-primary ml-3" (click)="searchForUser()">Submit</button>
                     </form>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
@@ -43,11 +43,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="input-group">
+              <div class="container">
+                <app-profile-display></app-profile-display>
+                <div class="input-group mt-3 pl-3">
                     <button *ngIf="!selectedIsFollowed"class="btn btn-primary" (click)="profileService.follow(loggedInProfile, selectedProfile); modalService.dismissAll()">Follow</button>
                     <button *ngIf="selectedIsFollowed"class="btn btn-danger" (click)="profileService.unfollow(loggedInProfile, selectedProfile); modalService.dismissAll()">Unfollow</button>
                 </div>
-                <app-profile-display></app-profile-display>
+              </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-  <a class="navbar-brand" routerLink="">『見ろ』</a>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark rounded-bottom">
+  <a class="navbar-brand" routerLink="">「見ろ」</a>
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarText" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,9 +17,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/profile">Profile</a>
         </li>
-        <li *ngIf="isAdmin">
-          <a class="nav-link" routerLink="/admin">Admin</a>
-        </li>
+<!--        <li *ngIf="isAdmin">-->
+<!--          <a class="nav-link" routerLink="/admin">Admin</a>-->
+<!--        </li>-->
         <li>
           <a class="nav-link" (click)="this.authService.logout()">Logout</a>
         </li>
@@ -34,3 +34,46 @@
     </ng-template>
   </div>
 </nav>
+
+<!--<ul ngbNav [activeId]="activatedRoute.fragment | async" class="nav-pills mx-3 my-3 bg-dark">-->
+<!--  <a class="navbar-brand text-dark font-weight-bold" routerLink="">「見ろ」</a>-->
+<!--  <li [ngbNavItem]>-->
+<!--    <a ngbNavLink>First</a>-->
+<!--    <ng-template ngbNavContent>First content</ng-template>-->
+<!--  </li>-->
+<!--  <li ngbNavItem>-->
+<!--    <a ngbNavLink>First</a>-->
+<!--    <ng-template ngbNavContent>First content</ng-template>-->
+<!--  </li>-->
+<!--  <li ngbNavItem>-->
+<!--    <a ngbNavLink>Second</a>-->
+<!--    <ng-template ngbNavContent>Second content</ng-template>-->
+<!--  </li>-->
+<!--  <li [ngbNavItem]>-->
+<!--    <a class="nav-link" routerLink="/search">Search</a>-->
+<!--  </li>-->
+<!--<span *ngIf="(isLoggedIn | async); else elseBlock" ngbNavItem>-->
+<!--  <ul class="nav-pills ml-auto">-->
+<!--    <li ngbNavItem>-->
+<!--      <a class="nav-link" routerLink="/users">Users</a>-->
+<!--    </li>-->
+<!--    <li ngbNavItem>-->
+<!--      <a class="nav-link" routerLink="/profile">Profile</a>-->
+<!--    </li>-->
+<!--&lt;!&ndash;        <li *ngIf="isAdmin">&ndash;&gt;-->
+<!--&lt;!&ndash;          <a class="nav-link" routerLink="/admin">Admin</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        </li>&ndash;&gt;-->
+<!--    <li>-->
+<!--      <a ngbNavItem (click)="this.authService.logout()">Logout</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</span>-->
+<!--<ng-template #elseBlock>-->
+<!--  <ul class="nav-pills ml-auto">-->
+<!--    <li ngbNavItem>-->
+<!--      <a class="nav-link" (click)="this.authService.login()">Login</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</ng-template>-->
+<!--</ul>-->
+<!--<div [ngbNavOutlet]="nav"></div>-->
