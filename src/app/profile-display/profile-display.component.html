@@ -26,7 +26,7 @@
               <p>{{ anime['episodeCount'] }}</p>
             </td>
             <td>
-              <p>{{ anime['showType'] | jsonParser }}</p>
+              <p>{{ anime['showType'] | jsonParser | titlecase }}</p>
             </td>
             <td>
               <p>{{ anime['status'] | jsonParser | titlecase }}</p>
