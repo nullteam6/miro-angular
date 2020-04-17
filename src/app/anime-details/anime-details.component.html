@@ -27,8 +27,8 @@
       <div class="card bg-dark text-light">
         <div class="card-header">Metadata</div>
           <div class="card-body">
-            <p>Status: {{ selectedAnime.status | jsonParser | titlecase}}</p>
-            <p>Format: {{ selectedAnime.showType | jsonParser  | uppercase}}</p>
+            <p>Status: {{ selectedAnime.status | jsonParser | titlecase }}</p>
+            <p>Format: {{ selectedAnime.showType | jsonParser  | titlecase }}</p>
             <p>Episodes: {{ selectedAnime.episodeCount | jsonParser }}</p>
             <p>Started: {{ selectedAnime.startDate | jsonParser | date }}</p>
             <p>Ended: {{ selectedAnime.endDate | jsonParser | date }}</p>
