@@ -1,49 +1,38 @@
-<!--<div class="container-fluid" style="background-image: url('https://wallpapershome.com/images/pages/pic_h/19468.jpg');-->
-<!--                              background-repeat: no-repeat; background-size: cover; background-position: center;">-->
-<!--  <div class="container mt-4" style="background: rgba(122, 130, 136, 0.6)">-->
-<!--    <div class="row-cols-1 col-sm-12 mt-5" style="color: rgb(16, 8, 19);" class="mask align-items-center col-md-6">-->
-<!--      <div>-->
-<!--        <p class="text-light">-->
-<!--          Find your favorite anime, add them to your watchlists, and catch up with your friends' lists, too!-->
-<!--        </p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
 <div class="container mt-3">
   <div class="row">
-    <div class="col-sm">
+    <div class="col-sm-3 mr-3">
       <div class="row">
-        <div class="card text-light bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card text-light bg-success mb-3" style="max-width: 18rem;">
           <div class="card-header">Where am I?</div>
           <div class="card-body">
-    <!--        <h5 class="card-title">Secondary card title</h5>-->
             <p class="card-text">
-              見ろ (Miro) is Japanese for "look". On this site, you'll be able to read up on and discover anime, add them to your own lists to track your progress watching them, and follow other users who do the same. Take a look!
+              見ろ (Miro) is Japanese for "look". On this site, you'll be able to read up on and discover anime, add them to your own watchlists to track your progress, and follow other users who do the same. Take a look!
             </p>
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="card text-light bg-info mb-5" style="max-width: 18rem;">
           <div class="card-header">How do you do it?</div>
           <div class="card-body">
-            <!--        <h5 class="card-title">Secondary card title</h5>-->
             <p class="card-text">
-              We consume <a href="https://kitsu.io">Kitsu</a>'s API for our anime information, while hosting our own platform and exposing our own API.
+              We consume <a href="https://kitsu.io" style="color: black;">Kitsu's</a> API for our anime information, while hosting our own platform and exposing our own API.
             </p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-sm">
-      <div class="row align-items-center">
+
+    <div class="col-sm-5">
+      <div class="row">
         <ngb-carousel>
           <ng-template ngbSlide *ngFor="let anime of trendingList">
-            <div class="card bg-dark mb-3" style="max-width: 800px;">
-              <div class="card-header text-light">{{ anime.name | jsonParser }}</div>
-              <div class="card-body">
-                <img src="{{ anime.logo | jsonParser }}" class="card-img" style="height: 400px; width: 250px;" alt="{{ anime.name | jsonParser }} logo" (click)="open(anime)" routerLink="/details">
+            <div class="card bg-dark" style="width: 350px;">
+              <div class="card-header text-light">Trending Anime</div>
+              <div class="card-body text-center">
+                <img src="{{ anime.logo | jsonParser }}" class="card-img mb-2" style="height: 400px; width: 250px;" alt="{{ anime.name | jsonParser }} logo" (click)="open(anime)" routerLink="/details">
+                <p class="card-text text-light text-center mb-4">{{ anime.name | jsonParser }}</p>
               </div>
             </div>
           </ng-template>
@@ -51,26 +40,4 @@
       </div>
     </div>
   </div>
-
-<!--  <div class="container mask text-light mt-5">-->
-<!--    <div class="row row">-->
-<!--      <div class="col-md-4 mt-4 mr-5 ml-5" style="background: rgba(122, 130, 136, 0.6)">-->
-<!--        <h3>Catch up with everything you've been missing 😺</h3>-->
-<!--        <p>-->
-<!--          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
-<!--        </p>-->
-<!--      </div>-->
-<!--      <div class="col-md-3 ml-5 text-dark" style="width: 5rem;">-->
-<!--        <div class="card">-->
-<!--          <img class="img-thumbnail" src="https://media.kitsu.io/anime/poster_images/1/small.jpg?1431697256" alt="Anime title"-->
-<!--               style="max-height: 10rem;">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Anime Title</h5>-->
-<!--            <p class="card-text">Description of anime goes here.</p>-->
-<!--            <a class="btn btn-primary">See full details</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 </div>

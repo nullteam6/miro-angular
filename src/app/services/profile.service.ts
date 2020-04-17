@@ -45,6 +45,7 @@ export class ProfileService {
     if (offset === undefined){
       return this.httpClient.get<PaginatedList<Profile>>('https://api.4ray.co/BackEnd/profile');
     }
+
     return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.co/BackEnd/profile?offset=${offset}`);
   }
 
@@ -52,6 +53,7 @@ export class ProfileService {
     if (offset === undefined) {
       return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.co/BackEnd/profile?search=${uid}`);
     }
-    return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.com/BackEnd/profile?search=${uid}&offset=${offset}`);    
+
+    return this.httpClient.get<PaginatedList<Profile>>(`https://api.4ray.com/BackEnd/profile?search=${uid}&offset=${offset}`);
   }
 }
